@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="keyword"  content="">
+    <link rel="shortcut icon" href="/hexo-theme-huxblog/img/favicon.ico">
+
+    <title>
+        
+          React中样式处理 - juanha的博客 | Juanha&#39;s Blog
+        
+    </title>
+
+    <link rel="canonical" href="http://kaijun.rocks/hexo-theme-huxblog/hexo-theme-huxblog/2017/03/19/React中样式处理/">
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="/hexo-theme-huxblog/css/bootstrap.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/hexo-theme-huxblog/css/hux-blog.min.css">
+
+    <!-- Pygments Highlight CSS -->
+    <link rel="stylesheet" href="/hexo-theme-huxblog/css/highlight.css">
+
+    <!-- Custom Fonts -->
+    <!-- <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
+    <!-- Hux change font-awesome CDN to qiniu -->
+    <link href="https://cdn.staticfile.org/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+
+    <!-- Hux Delete, sad but pending in China
+    <link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/
+    css'>
+    -->
+
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="">
+
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/hexo-theme-huxblog/">Juanha&#39;s Blog</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/hexo-theme-huxblog/">Home</a>
+                    </li>
+
+                    
+
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/hexo-theme-huxblog/about/">About</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/hexo-theme-huxblog/archives/">Archives</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/hexo-theme-huxblog/tags/">Tags</a>
+                        </li>
+                        
+                    
+                    
+                </ul>
+            </div>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        // OPEN
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+    <!-- Main Content -->
+    
+<!-- Image to hack wechat -->
+<!-- <img src="http://kaijun.rocks/hexo-theme-huxblog/hexo-theme-huxblog/img/icon_wechat.png" width="0" height="0"> -->
+<!-- <img src="{{ site.baseurl }}/{% if page.header-img %}{{ page.header-img }}{% else %}{{ site.header-img }}{% endif %}" width="0" height="0"> -->
+
+<!-- Post Header -->
+<style type="text/css">
+    header.intro-header{
+        background-image: url('/hexo-theme-huxblog/img/home-bg.jpg')
+    }
+</style>
+<header class="intro-header" >
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="tags">
+                        
+                          <a class="tag" href="/hexo-theme-huxblog/tags/#React" title="React">React</a>
+                        
+                          <a class="tag" href="/hexo-theme-huxblog/tags/#css modules" title="css modules">css modules</a>
+                        
+                          <a class="tag" href="/hexo-theme-huxblog/tags/#react-css-modules" title="react-css-modules">react-css-modules</a>
+                        
+                          <a class="tag" href="/hexo-theme-huxblog/tags/#classnames" title="classnames">classnames</a>
+                        
+                    </div>
+                    <h1>React中样式处理</h1>
+                    <h2 class="subheading"></h2>
+                    <span class="meta">
+                        Posted by Juan on
+                        2017-03-19
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+    <!-- Post Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                <p>简单介绍CSS Modules、React-CSS-Modules、classnames概念及用法<br><a id="more"></a></p>
+<h2 id="CSS-Modules"><a href="#CSS-Modules" class="headerlink" title="CSS Modules"></a>CSS Modules</h2><blockquote>
+<p>A CSS Module is a CSS file in which all class names and animation names are scoped locally by default.</p>
+</blockquote>
+<p>CSS Modules实现了css模块化，我们可以像引入js文件一样来引入css文件，所有样式都是局部化的，不用担心命名冲突，全局污染的问题，此外，还能通过CSS Modules提供的组合方法达到对样式的复用。CSS Modules多应用于提取公共组件或业务公共组件场景中</p>
+<h3 id="CSS-Modules的配置"><a href="#CSS-Modules的配置" class="headerlink" title="CSS Modules的配置"></a>CSS Modules的配置</h3><p>webpack css-loader已经内置CSS Modules功能，启用css Modules代码如下：<br><figure class="highlight dts"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="symbol">module:</span> &#123;</div><div class="line"><span class="symbol">  loaders:</span> [</div><div class="line">    <span class="comment">// ...</span></div><div class="line">    &#123;</div><div class="line"><span class="symbol">      test:</span> /\.css$/,</div><div class="line"><span class="symbol">      loader:</span> <span class="string">"style-loader!css-loader?modules&amp;localIdentName=[path][name]---[local]---[hash:base64:5]"</span></div><div class="line">    &#125;,</div><div class="line">  ]</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>其中，关键词<code>modules</code>，表示启用CSS Modules 功能，<code>localIdentName</code>用于定制生成样式的命名规则</p>
+<h3 id="CSS-Modules的使用"><a href="#CSS-Modules的使用" class="headerlink" title="CSS Modules的使用"></a>CSS Modules的使用</h3><p>在React环境中，CSS Modules 看起来是这样子的：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> React, &#123; Component &#125; <span class="keyword">from</span> <span class="string">'react'</span>;</div><div class="line"><span class="keyword">import</span> styles <span class="keyword">from</span> <span class="string">'./table.css'</span>;</div><div class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="class"><span class="keyword">class</span> <span class="title">Table</span> <span class="keyword">extends</span> <span class="title">Component</span> </span>&#123;</div><div class="line">    render () &#123;</div><div class="line">        <span class="keyword">return</span> <span class="xml"><span class="tag">&lt;<span class="name">div</span> <span class="attr">className</span>=<span class="string">&#123;styles.table&#125;</span>&gt;</span></span></div><div class="line">            <span class="tag">&lt;<span class="name">div</span> <span class="attr">className</span>=<span class="string">&#123;styles.row&#125;</span>&gt;</span></div><div class="line">                <span class="tag">&lt;<span class="name">div</span> <span class="attr">className</span>=<span class="string">&#123;styles.cell&#125;</span>&gt;</span>A0<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">                <span class="tag">&lt;<span class="name">div</span> <span class="attr">styleName</span>=<span class="string">'cell'</span>&gt;</span>B0<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">            <span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">        <span class="tag">&lt;/<span class="name">div</span>&gt;</span>;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>组件渲染出来后会生成类似于这样的一个标记：</p>
+<figure class="highlight applescript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">&lt;<span class="keyword">div</span> <span class="built_in">class</span>=<span class="string">"table__table___32osj"</span>&gt;</div><div class="line">    &lt;<span class="keyword">div</span> <span class="built_in">class</span>=<span class="string">"table__row___2w27N"</span>&gt;</div><div class="line">        &lt;<span class="keyword">div</span> <span class="built_in">class</span>=<span class="string">"table__cell___2w27N"</span>&gt;A0&lt;/<span class="keyword">div</span>&gt;</div><div class="line">        &lt;<span class="keyword">div</span> <span class="built_in">class</span>=<span class="string">"table__cell___1oVw5"</span>&gt;B0&lt;/<span class="keyword">div</span>&gt;</div><div class="line">    &lt;/<span class="keyword">div</span>&gt;</div><div class="line">&lt;/<span class="keyword">div</span>&gt;</div></pre></td></tr></table></figure>
+<p>同时也会生成一个以hash映射形式来匹配相应的类名的table.css.js文件：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">module</span>.<span class="keyword">exports</span> = &#123;</div><div class="line">    <span class="string">"table"</span>: <span class="string">"table__table___32osj"</span>，</div><div class="line">    <span class="string">"row"</span>: <span class="string">"table__row___2w27N"</span>,</div><div class="line">    <span class="string">"cell"</span>: <span class="string">"table__cell___2w27N"</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>此外，CSS Modules还提供了compose组合方法来处理样式复用，示例代码如下：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="selector-class">.className</span> &#123;</div><div class="line">  <span class="attribute">color</span>: green;</div><div class="line">  <span class="attribute">background</span>: red;</div><div class="line">  <span class="attribute">font-size</span>: <span class="number">12px</span>;</div><div class="line">&#125;</div><div class="line"> </div><div class="line"><span class="selector-class">.otherClassName</span> &#123;</div><div class="line">  <span class="attribute">composes</span>: className;</div><div class="line">  <span class="attribute">color</span>: yellow;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="CSS-Modules优点"><a href="#CSS-Modules优点" class="headerlink" title="CSS Modules优点"></a>CSS Modules优点</h3><ul>
+<li>所有样式都是局部化的，解决了命名冲突和全局污染问题</li>
+<li>class名的生成规则配置灵活</li>
+<li>引入组件，只需引用组件的js文件，不需要额外去引入css文件</li>
+<li>依然是css，学习成本几乎为零</li>
+</ul>
+<h3 id="目前存在的问题"><a href="#目前存在的问题" class="headerlink" title="目前存在的问题"></a>目前存在的问题</h3><ul>
+<li>必须使用驼峰式的命名(若以‘-’命名，则需要通过styles[]这种形式关联)</li>
+<li>需要频繁的输入style.**</li>
+<li>引用一个未定义的 CSS 模块时解析结果为 undefined ,但并无相关警告提示</li>
+</ul>
+<h2 id="React-CSS-Modules"><a href="#React-CSS-Modules" class="headerlink" title="React CSS Modules"></a>React CSS Modules</h2><blockquote>
+<p>React CSS Modules implement automatic mapping of CSS modules. Every CSS class is assigned a local-scoped identifier with a global unique name. CSS Modules enable a modular and reusable CSS! </p>
+</blockquote>
+<p>React CSS Modules实现了自动化映射 CSS modules，完美得解决了上述问题，它的原理是扩展了render方法，根据styleName的值去在关联的styles对象中查找相应的css-module，并给每个 CSS 类赋予一个带有全局唯一名字的本地标识符的类名。</p>
+<h3 id="React-CSS-Modules的使用"><a href="#React-CSS-Modules的使用" class="headerlink" title="React CSS Modules的使用"></a>React CSS Modules的使用</h3><p>使用React css Modules上述例子可以简化为：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> React <span class="keyword">from</span> <span class="string">'react'</span>;</div><div class="line"><span class="keyword">import</span> CSSModules <span class="keyword">from</span> <span class="string">'react-css-modules'</span></div><div class="line"><span class="keyword">import</span> styles <span class="keyword">from</span> <span class="string">'./table.css'</span>;</div><div class="line"> </div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Table</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span> </span>&#123;</div><div class="line">    render () &#123;</div><div class="line">        <span class="keyword">return</span> <span class="xml"><span class="tag">&lt;<span class="name">div</span> <span class="attr">styleName</span>=<span class="string">"root"</span>&gt;</span></span></div><div class="line">            <span class="tag">&lt;<span class="name">div</span> <span class="attr">styleName</span>=<span class="string">"row"</span>&gt;</span></div><div class="line">                <span class="tag">&lt;<span class="name">div</span> <span class="attr">styleName</span>=<span class="string">"cell"</span>&gt;</span>A0<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">            <span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">        <span class="tag">&lt;/<span class="name">div</span>&gt;</span>;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"><span class="keyword">export</span> <span class="keyword">default</span> CSSModules(Table, styles);</div></pre></td></tr></table></figure>
+<h3 id="Options配置"><a href="#Options配置" class="headerlink" title="Options配置"></a>Options配置</h3><p>React CSS Modules提供了options作为第三个参数来对CSS Modules的配置</p>
+<ul>
+<li>allowMultiple 默认为false </li>
+<li>errorWhenNotFound 默认为true <figure class="highlight yaml"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="string">CSSModules(Component,</span> <span class="string">styles,</span> <span class="string">options);</span> <span class="string">//</span> <span class="string">options</span> <span class="string">=</span> <span class="string">&#123;</span> <span class="attr">allowMultiple:</span> <span class="literal">false</span><span class="string">,</span> <span class="attr">errorWhenNotFound:</span> <span class="literal">true</span> <span class="string">&#125;</span></div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="React-CSS-Module的优点"><a href="#React-CSS-Module的优点" class="headerlink" title="React CSS Module的优点"></a>React CSS Module的优点</h3><ul>
+<li>我们不用再关注是否使用驼峰来命名class名</li>
+<li>不用每次使用CSS Modules都用styles.**来关联对象</li>
+<li>通过<code>&lt;div className=&quot;global-css&quot; styleName=&quot;local-css&quot;&gt;&lt;/div&gt;</code>明显区分全局CSS和CSS Modules</li>
+<li>当styleName关联了一个undefined CSS Modules时，会得到一个警告信息(errorWhenNotFound option)</li>
+<li>强制使用一个CSS Modules, 推崇使用CSS Modules 的样式组合（allowMultiple option)</li>
+</ul>
+<h2 id="classnames"><a href="#classnames" class="headerlink" title="classnames"></a>classnames</h2><blockquote>
+<p> A simple javascript utility for conditionally joining classNames together.</p>
+</blockquote>
+<p> 在业务开发中，少不了对类的操作，以button组件为例，如果不使用classnames库，需要这样处理动态类名</p>
+ <figure class="highlight scala"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> <span class="type">React</span>，&#123; <span class="type">Component</span> &#125; from <span class="symbol">'reac</span>t';</div><div class="line">  </div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Button</span> <span class="keyword">extends</span> <span class="title">Component</span> </span>&#123;</div><div class="line">  <span class="comment">// ...</span></div><div class="line">  render () &#123;</div><div class="line">    let btnClass = <span class="symbol">'bt</span>n';</div><div class="line">    <span class="keyword">if</span> (<span class="keyword">this</span>.state.isPressed) btnClass += ' btn-pressed';</div><div class="line">    <span class="keyword">else</span> <span class="keyword">if</span> (<span class="keyword">this</span>.state.isHovered) btnClass += ' btn-over';</div><div class="line">    <span class="keyword">return</span> &lt;button className=&#123;btnClass&#125;&gt;&#123;<span class="keyword">this</span>.props.label&#125;&lt;/button&gt;;</div><div class="line">  &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<p>使用了classnames库，代码简化如下：</p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> <span class="type">React</span>，&#123; <span class="type">Component</span> &#125; from <span class="symbol">'reac</span>t';</div><div class="line">  </div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Button</span> <span class="keyword">extends</span> <span class="title">Component</span> </span>&#123;</div><div class="line">  <span class="comment">// ...</span></div><div class="line">  render () &#123;</div><div class="line">    const btnClass = classNames(&#123;</div><div class="line">        <span class="symbol">'bt</span>n': <span class="literal">true</span>,</div><div class="line">        <span class="symbol">'btn</span>-pressed': <span class="keyword">this</span>.state.isPressed,</div><div class="line">        <span class="symbol">'btn</span>-over': !<span class="keyword">this</span>.state.isPressed &amp;&amp; <span class="keyword">this</span>.state.isHovered,</div><div class="line">    &#125;);</div><div class="line">    <span class="keyword">return</span> &lt;button className=&#123;btnClass&#125;&gt;&#123;<span class="keyword">this</span>.props.label&#125;&lt;/button&gt;;</div><div class="line">  &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<p>至此，有了CSS Modules， React-CSS-Modules，classnames，通过简单配置，我们就可以把精力集中在编写css样式上了，而无须为类名的命名感到头疼，也不用频繁地使用styles.**来关联样式，当styleName关联了一个undefiend CSS Modules时，会得到一个警告信息，而不用去查找原因去看DOM结点，再加之有了classnames的动态操作样式的助攻，我们的代码将会变得更加简明和清晰!</p>
+<h3 id="参考文档："><a href="#参考文档：" class="headerlink" title="参考文档："></a>参考文档：</h3><ul>
+<li><a href="https://github.com/css-modules/css-modules" target="_blank" rel="external">https://github.com/css-modules/css-modules</a></li>
+<li><a href="https://github.com/gajus/react-css-modules" target="_blank" rel="external">https://github.com/gajus/react-css-modules</a></li>
+<li><a href="https://github.com/JedWatson/classnames" target="_blank" rel="external">https://github.com/JedWatson/classnames</a></li>
+</ul>
+
+
+                <hr>
+
+                
+
+                <ul class="pager">
+                    
+                        <li class="previous">
+                            <a href="/hexo-theme-huxblog/2017/03/19/xx-net翻墙工具配置/" data-toggle="tooltip" data-placement="top" title="xx-net翻墙工具配置">&larr; Previous Post</a>
+                        </li>
+                    
+                    
+                        <li class="next">
+                            <a href="/hexo-theme-huxblog/2017/03/19/markdown语法/" data-toggle="tooltip" data-placement="top" title="MarkDown语法">Next Post &rarr;</a>
+                        </li>
+                    
+                </ul>
+
+                
+
+                
+                <!-- disqus 评论框 start -->
+                <div class="comment">
+                    <div id="disqus_thread" class="disqus-thread"></div>
+                </div>
+                <!-- disqus 评论框 end -->
+                
+
+            </div>
+    <!-- Side Catalog Container -->
+        
+
+    <!-- Sidebar Container -->
+
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+                <section>
+                    <!-- no hr -->
+                    <h5><a href="/hexo-theme-huxblog/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+                       
+                          <a class="tag" href="/hexo-theme-huxblog/tags/#React" title="React">React</a>
+                        
+                          <a class="tag" href="/hexo-theme-huxblog/tags/#css modules" title="css modules">css modules</a>
+                        
+                          <a class="tag" href="/hexo-theme-huxblog/tags/#react-css-modules" title="react-css-modules">react-css-modules</a>
+                        
+                          <a class="tag" href="/hexo-theme-huxblog/tags/#classnames" title="classnames">classnames</a>
+                        
+                    </div>
+                </section>
+                
+
+                <!-- Friends Blog -->
+                
+                <hr>
+                <h5>FRIENDS</h5>
+                <ul class="list-inline">
+
+                    
+                        <li><a href="http://juanha.coding.me" target="_blank">Juan Blog</a></li>
+                    
+                        <li><a href="#" target="_blank">Foo</a></li>
+                    
+                        <li><a href="#" target="_blank">Bar</a></li>
+                    
+                        <li><a href="#" target="_blank">Example Friends</a></li>
+                    
+                        <li><a href="#" target="_blank">It helps SEO</a></li>
+                    
+                </ul>
+                
+            </div>
+
+        </div>
+    </div>
+</article>
+
+
+
+
+<!-- disqus 公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES * * */
+    var disqus_shortname = "juanha";
+    var disqus_identifier = "http://kaijun.rocks/hexo-theme-huxblog/hexo-theme-huxblog/2017/03/19/React中样式处理/";
+    var disqus_url = "http://kaijun.rocks/hexo-theme-huxblog/hexo-theme-huxblog/2017/03/19/React中样式处理/";
+
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<!-- disqus 公共JS代码 end -->
+
+
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+<!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
+<script>
+    async("https://cdn.bootcss.com/anchor-js/1.1.1/anchor.min.js",function(){
+        anchors.options = {
+          visible: 'always',
+          placement: 'right',
+          icon: '#'
+        };
+        anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
+    })
+</script>
+<style>
+    /* place left on bigger screen */
+    @media all and (min-width: 800px) {
+        .anchorjs-link{
+            position: absolute;
+            left: -0.75em;
+            font-size: 1.1em;
+            margin-top : -0.1em;
+        }
+    }
+</style>
+
+
+
+    <!-- Footer -->
+    <!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                
+                
+                
+                    <li>
+                        <a target="_blank" href="https://www.zhihu.com/people/juanha">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa  fa-stack-1x fa-inverse">知</i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+                    <li>
+                        <a target="_blank" href="http://weibo.com/fhjuanha">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-weibo fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+
+                
+                    <li>
+                        <a target="_blank"  href="https://github.com/juanha">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+
+                </ul>
+                <p class="copyright text-muted">
+                    Copyright &copy; Juanha&#39;s Blog 2017 
+                    <br>
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+<script src="/hexo-theme-huxblog/js/jquery.min.js"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="/hexo-theme-huxblog/js/bootstrap.min.js"></script>
+
+<!-- Custom Theme JavaScript -->
+<script src="/hexo-theme-huxblog/js/hux-blog.min.js"></script>
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!-- 
+     Because of the native support for backtick-style fenced code blocks 
+     right within the Markdown is landed in Github Pages, 
+     From V1.6, There is no need for Highlight.js, 
+     so Huxblog drops it officially.
+
+     - https://github.com/blog/2100-github-pages-now-faster-and-simpler-with-jekyll-3-0  
+     - https://help.github.com/articles/creating-and-highlighting-code-blocks/    
+-->
+<!--
+    <script>
+        async("http://cdn.bootcss.com/highlight.js/8.6/highlight.min.js", function(){
+            hljs.initHighlightingOnLoad();
+        })
+    </script>
+    <link href="http://cdn.bootcss.com/highlight.js/8.6/styles/github.min.css" rel="stylesheet">
+-->
+
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+        async("http://kaijun.rocks/hexo-theme-huxblog/hexo-theme-huxblog/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("https://cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+<!-- Google Analytics -->
+
+
+
+
+<!-- Baidu Tongji -->
+
+
+<!-- Side Catalog -->
+
+
+
+
+
+<!-- Image to hack wechat -->
+<img src="http://kaijun.rocks/hexo-theme-huxblog/hexo-theme-huxblog/img/icon_wechat.png" width="0" height="0" />
+<!-- Migrate from head to bottom, no longer block render and still work -->
+
+</body>
+
+</html>

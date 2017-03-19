@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="keyword"  content="">
+    <link rel="shortcut icon" href="/hexo-theme-huxblog/img/favicon.ico">
+
+    <title>
+        
+          Mac下安装Win7--VirtualBox篇 - juanha的博客 | Juanha&#39;s Blog
+        
+    </title>
+
+    <link rel="canonical" href="http://kaijun.rocks/hexo-theme-huxblog/hexo-theme-huxblog/2017/02/09/Mac下安装Win7-VirtualBox篇/">
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="/hexo-theme-huxblog/css/bootstrap.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/hexo-theme-huxblog/css/hux-blog.min.css">
+
+    <!-- Pygments Highlight CSS -->
+    <link rel="stylesheet" href="/hexo-theme-huxblog/css/highlight.css">
+
+    <!-- Custom Fonts -->
+    <!-- <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
+    <!-- Hux change font-awesome CDN to qiniu -->
+    <link href="https://cdn.staticfile.org/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+
+    <!-- Hux Delete, sad but pending in China
+    <link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/
+    css'>
+    -->
+
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="">
+
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/hexo-theme-huxblog/">Juanha&#39;s Blog</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/hexo-theme-huxblog/">Home</a>
+                    </li>
+
+                    
+
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/hexo-theme-huxblog/about/">About</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/hexo-theme-huxblog/archives/">Archives</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/hexo-theme-huxblog/tags/">Tags</a>
+                        </li>
+                        
+                    
+                    
+                </ul>
+            </div>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        // OPEN
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+    <!-- Main Content -->
+    
+<!-- Image to hack wechat -->
+<!-- <img src="http://kaijun.rocks/hexo-theme-huxblog/hexo-theme-huxblog/img/icon_wechat.png" width="0" height="0"> -->
+<!-- <img src="{{ site.baseurl }}/{% if page.header-img %}{{ page.header-img }}{% else %}{{ site.header-img }}{% endif %}" width="0" height="0"> -->
+
+<!-- Post Header -->
+<style type="text/css">
+    header.intro-header{
+        background-image: url('/hexo-theme-huxblog/img/home-bg.jpg')
+    }
+</style>
+<header class="intro-header" >
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="tags">
+                        
+                          <a class="tag" href="/hexo-theme-huxblog/tags/#工具" title="工具">工具</a>
+                        
+                    </div>
+                    <h1>Mac下安装Win7--VirtualBox篇</h1>
+                    <h2 class="subheading"></h2>
+                    <span class="meta">
+                        Posted by Juan on
+                        2017-02-09
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+    <!-- Post Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                <blockquote>
+<p>VirtualBox、VMware Fusion 和 Parallels Desktop for Mac 是Mac上比较知名的几款虚拟机软件，其中VirtualBox 是一款开源虚拟机软件。由德国 Innotek 公司开发，Sun Microsystems公司出品, 号称是最强的免费虚拟机软件，它不仅具有丰富的特色，而且性能也很优异！简单易用,与mac系统无缝连接。因此在这里选择了用virtualbox这款虚拟机来安装windows7系统。<br><a id="more"></a></p>
+</blockquote>
+<h3 id="使用环境和软件"><a href="#使用环境和软件" class="headerlink" title="使用环境和软件"></a>使用环境和软件</h3><ul>
+<li>Mac OS X 10.12.1</li>
+<li>2.2 GHz Intel Core i7</li>
+<li>VirtualBox 5.1.14</li>
+<li>Windows 7 x86</li>
+</ul>
+<h3 id="安装virtualbox"><a href="#安装virtualbox" class="headerlink" title="安装virtualbox"></a>安装virtualbox</h3><h4 id="第一步：获取virtualbox"><a href="#第一步：获取virtualbox" class="headerlink" title="第一步：获取virtualbox"></a>第一步：获取virtualbox</h4><p>在<a href="https://www.virtualbox.org/wiki/Downloads" target="_blank" rel="external">virtualbox官网</a>选择mac版最新版本下载<br><img src="Mac下安装Win7-VirtualBox篇/download-virtualbox.png" alt=""></p>
+<h4 id="第二步：安装virtualbox"><a href="#第二步：安装virtualbox" class="headerlink" title="第二步：安装virtualbox"></a>第二步：安装virtualbox</h4><p>双击刚刚下好的virtualbox安装包，根据提示双击VirtualBox.mpkg图标，一路顺着安装就好了<br><img src="Mac下安装Win7-VirtualBox篇/install-virtualbox.png" alt=""></p>
+<h3 id="创建新的虚拟机"><a href="#创建新的虚拟机" class="headerlink" title="创建新的虚拟机"></a>创建新的虚拟机</h3><p>照着下面图中红色框的选项一步步操作就好了，这里不再赘述</p>
+<p><img src="Mac下安装Win7-VirtualBox篇/new-1.png" alt=""></p>
+<p><img src="Mac下安装Win7-VirtualBox篇/new-2.png" alt=""></p>
+<p><img src="Mac下安装Win7-VirtualBox篇/new-4.png" alt=""></p>
+<p><img src="Mac下安装Win7-VirtualBox篇/new-5.png" alt=""></p>
+<p><img src="Mac下安装Win7-VirtualBox篇/new-6.png" alt=""></p>
+<p><img src="Mac下安装Win7-VirtualBox篇/new-7.png" alt=""></p>
+<h3 id="安装win7"><a href="#安装win7" class="headerlink" title="安装win7"></a>安装win7</h3><h4 id="下载windows7镜像文件"><a href="#下载windows7镜像文件" class="headerlink" title="下载windows7镜像文件"></a>下载windows7镜像文件</h4><p>windows7 32位纯净版下载地址：<a href="http://www.xitongtiandi.com/Windows7/148.html" target="_blank" rel="external">http://www.xitongtiandi.com/Windows7/148.html</a></p>
+<h4 id="设定磁盘路径"><a href="#设定磁盘路径" class="headerlink" title="设定磁盘路径"></a>设定磁盘路径</h4><p>点击红色框选取刚刚下载好的win7系统文件，设定之后，点击启动，进入到安装win7页面<br><img src="Mac下安装Win7-VirtualBox篇/win7-1.png" alt=""></p>
+<p><img src="Mac下安装Win7-VirtualBox篇/win7-2.png" alt=""></p>
+<h4 id="安装win7-1"><a href="#安装win7-1" class="headerlink" title="安装win7"></a>安装win7</h4><p>在安装win7页面，选择B项，进入到PE系统，这里使用的是通过PE系统来安装系统的方法<br><img src="Mac下安装Win7-VirtualBox篇/win7-3.png" alt=""></p>
+<p>若安装首页出现卡顿，迟迟没有反应，则关掉窗口重新启动<br><img src="Mac下安装Win7-VirtualBox篇/win7-5.png" alt=""></p>
+<p>进入到PE系统后，双击自动换分硬盘为4个1区的图标，点击确定，一路点yes，稍后就划分好了四个磁盘区<br><img src="Mac下安装Win7-VirtualBox篇/win7-6.png" alt=""></p>
+<p>磁盘划分成功后，会自动弹出是否立即安装系统的框，点击确定<br><img src="Mac下安装Win7-VirtualBox篇/win7-7.png" alt=""></p>
+<p>下面开始进入到了自动化安装win7系统程序，耐心等待安装完成即可<br><img src="Mac下安装Win7-VirtualBox篇/win7-8.png" alt=""></p>
+<p><img src="Mac下安装Win7-VirtualBox篇/win7-9.png" alt=""></p>
+<p><img src="Mac下安装Win7-VirtualBox篇/win7-10.png" alt=""></p>
+<p><img src="Mac下安装Win7-VirtualBox篇/win7-11.png" alt=""></p>
+<p><img src="Mac下安装Win7-VirtualBox篇/win7-12.png" alt=""></p>
+<p>至此，windows7系统安装完成！</p>
+<h3 id="安装VirtualBox-Guest-Additions"><a href="#安装VirtualBox-Guest-Additions" class="headerlink" title="安装VirtualBox Guest Additions"></a>安装VirtualBox Guest Additions</h3><h4 id="为何要安装virtualbox-guest-addtions"><a href="#为何要安装virtualbox-guest-addtions" class="headerlink" title="为何要安装virtualbox guest addtions"></a>为何要安装virtualbox guest addtions</h4><p>Win7虽然安装好了，但是在使用方面，很多地方怪怪的，比如: 拖动虚拟机窗口会导致系统两边留空白，如下图所示<br><img src="Mac下安装Win7-VirtualBox篇/add-1.png" alt=""><br>需要快捷键（command）实现Mac和win7系统切换，不顺手，因此安装VirtualBox Guest Additions可以改善这些状况，它包含了可优化操作系统以实现更佳性能和可用性的设备驱动程序和系统应用程序，有以下功能:</p>
+<ul>
+<li>Mouse pointer integration（滑鼠游标整合）</li>
+<li>Better video support（较佳的显示支援）</li>
+<li>Time synchronization（时间同步）</li>
+<li>Shared folders（共享档案夾）</li>
+<li>Seamless windows（无缝模式）</li>
+<li>Shared clipboard（共享剪贴版）</li>
+<li>Automated Windows logons（Windows 自动登入）</li>
+</ul>
+<h4 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h4><p>虚拟机系统窗口 &gt; Devices &gt; insert into guest addtions cd image </p>
+<p>回到桌面，打开计算机，则会看到多了个CD驱动器<br><img src="Mac下安装Win7-VirtualBox篇/add-3.png" alt=""></p>
+<p>点开驱动器，选择VirtualBox Guest Additions进行安装，默认点下一步，中间会弹出要安装其他程序窗口，全部选择安装，直至安装成功<br><img src="Mac下安装Win7-VirtualBox篇/add-4.png" alt=""></p>
+<p><img src="Mac下安装Win7-VirtualBox篇/add-5.png" alt=""></p>
+<p><img src="Mac下安装Win7-VirtualBox篇/add-6.png" alt=""><br>VirtualBox Guest Additions安装完成，重启电脑，我们就能享用它给我们带来的便利了！拖动窗口试试~</p>
+<h3 id="设置共享"><a href="#设置共享" class="headerlink" title="设置共享"></a>设置共享</h3><p>实现Mac系统和Windows7系统之间的文件共享，还需要作一些设置</p>
+<h4 id="设置共享文件夹"><a href="#设置共享文件夹" class="headerlink" title="设置共享文件夹"></a>设置共享文件夹</h4><p><img src="Mac下安装Win7-VirtualBox篇/share-1.png" alt=""></p>
+<h4 id="映射网络驱动"><a href="#映射网络驱动" class="headerlink" title="映射网络驱动"></a>映射网络驱动</h4><p><img src="Mac下安装Win7-VirtualBox篇/share-2.png" alt=""></p>
+<p><img src="Mac下安装Win7-VirtualBox篇/share-3.png" alt=""></p>
+<p>至此，就可以在选取的共享文件夹中实现mac系统和win7系统的文件共享了!</p>
+<p>此外，使用command + f 键可实现win7系统全屏切换</p>
+
+
+                <hr>
+
+                
+
+                <ul class="pager">
+                    
+                        <li class="previous">
+                            <a href="/hexo-theme-huxblog/2017/03/05/http缓存机制浅析/" data-toggle="tooltip" data-placement="top" title="http缓存机制浅析">&larr; Previous Post</a>
+                        </li>
+                    
+                    
+                        <li class="next">
+                            <a href="/hexo-theme-huxblog/2017/01/22/CSS权威指南笔记/" data-toggle="tooltip" data-placement="top" title="css权威指南笔记">Next Post &rarr;</a>
+                        </li>
+                    
+                </ul>
+
+                
+
+                
+                <!-- disqus 评论框 start -->
+                <div class="comment">
+                    <div id="disqus_thread" class="disqus-thread"></div>
+                </div>
+                <!-- disqus 评论框 end -->
+                
+
+            </div>
+    <!-- Side Catalog Container -->
+        
+
+    <!-- Sidebar Container -->
+
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+                <section>
+                    <!-- no hr -->
+                    <h5><a href="/hexo-theme-huxblog/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+                       
+                          <a class="tag" href="/hexo-theme-huxblog/tags/#工具" title="工具">工具</a>
+                        
+                    </div>
+                </section>
+                
+
+                <!-- Friends Blog -->
+                
+                <hr>
+                <h5>FRIENDS</h5>
+                <ul class="list-inline">
+
+                    
+                        <li><a href="http://juanha.coding.me" target="_blank">Juan Blog</a></li>
+                    
+                        <li><a href="#" target="_blank">Foo</a></li>
+                    
+                        <li><a href="#" target="_blank">Bar</a></li>
+                    
+                        <li><a href="#" target="_blank">Example Friends</a></li>
+                    
+                        <li><a href="#" target="_blank">It helps SEO</a></li>
+                    
+                </ul>
+                
+            </div>
+
+        </div>
+    </div>
+</article>
+
+
+
+
+<!-- disqus 公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES * * */
+    var disqus_shortname = "juanha";
+    var disqus_identifier = "http://kaijun.rocks/hexo-theme-huxblog/hexo-theme-huxblog/2017/02/09/Mac下安装Win7-VirtualBox篇/";
+    var disqus_url = "http://kaijun.rocks/hexo-theme-huxblog/hexo-theme-huxblog/2017/02/09/Mac下安装Win7-VirtualBox篇/";
+
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<!-- disqus 公共JS代码 end -->
+
+
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+<!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
+<script>
+    async("https://cdn.bootcss.com/anchor-js/1.1.1/anchor.min.js",function(){
+        anchors.options = {
+          visible: 'always',
+          placement: 'right',
+          icon: '#'
+        };
+        anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
+    })
+</script>
+<style>
+    /* place left on bigger screen */
+    @media all and (min-width: 800px) {
+        .anchorjs-link{
+            position: absolute;
+            left: -0.75em;
+            font-size: 1.1em;
+            margin-top : -0.1em;
+        }
+    }
+</style>
+
+
+
+    <!-- Footer -->
+    <!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                
+                
+                
+                    <li>
+                        <a target="_blank" href="https://www.zhihu.com/people/juanha">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa  fa-stack-1x fa-inverse">知</i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+                    <li>
+                        <a target="_blank" href="http://weibo.com/fhjuanha">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-weibo fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+
+                
+                    <li>
+                        <a target="_blank"  href="https://github.com/juanha">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+
+                </ul>
+                <p class="copyright text-muted">
+                    Copyright &copy; Juanha&#39;s Blog 2017 
+                    <br>
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+<script src="/hexo-theme-huxblog/js/jquery.min.js"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="/hexo-theme-huxblog/js/bootstrap.min.js"></script>
+
+<!-- Custom Theme JavaScript -->
+<script src="/hexo-theme-huxblog/js/hux-blog.min.js"></script>
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!-- 
+     Because of the native support for backtick-style fenced code blocks 
+     right within the Markdown is landed in Github Pages, 
+     From V1.6, There is no need for Highlight.js, 
+     so Huxblog drops it officially.
+
+     - https://github.com/blog/2100-github-pages-now-faster-and-simpler-with-jekyll-3-0  
+     - https://help.github.com/articles/creating-and-highlighting-code-blocks/    
+-->
+<!--
+    <script>
+        async("http://cdn.bootcss.com/highlight.js/8.6/highlight.min.js", function(){
+            hljs.initHighlightingOnLoad();
+        })
+    </script>
+    <link href="http://cdn.bootcss.com/highlight.js/8.6/styles/github.min.css" rel="stylesheet">
+-->
+
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+        async("http://kaijun.rocks/hexo-theme-huxblog/hexo-theme-huxblog/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("https://cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+<!-- Google Analytics -->
+
+
+
+
+<!-- Baidu Tongji -->
+
+
+<!-- Side Catalog -->
+
+
+
+
+
+<!-- Image to hack wechat -->
+<img src="http://kaijun.rocks/hexo-theme-huxblog/hexo-theme-huxblog/img/icon_wechat.png" width="0" height="0" />
+<!-- Migrate from head to bottom, no longer block render and still work -->
+
+</body>
+
+</html>
