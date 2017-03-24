@@ -13,11 +13,11 @@
 
     <title>
         
-          http缓存机制浅析 - juanha的博客 | Juanha&#39;s Blog
+          css权威指南笔记 - juanha的博客 | Juanha&#39;s Blog
         
     </title>
 
-    <link rel="canonical" href="http://kaijun.rocks/hexo-theme-huxblog/2017/03/05/http缓存机制浅析/">
+    <link rel="canonical" href="http://kaijun.rocks/hexo-theme-huxblog/2017/01/22/css-authoritative-guide-note/">
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="/css/bootstrap.min.css">
@@ -165,14 +165,14 @@
                 <div class="post-heading">
                     <div class="tags">
                         
-                          <a class="tag" href="/tags/#http" title="http">http</a>
+                          <a class="tag" href="/tags/#CSS" title="CSS">CSS</a>
                         
                     </div>
-                    <h1>http缓存机制浅析</h1>
+                    <h1>css权威指南笔记</h1>
                     <h2 class="subheading"></h2>
                     <span class="meta">
                         Posted by Juan on
-                        2017-03-05
+                        2017-01-22
                     </span>
                 </div>
             </div>
@@ -191,107 +191,70 @@
                 col-md-10 col-md-offset-1
                 post-container">
 
-                <blockquote>
-<p>浏览器缓存（Browser Caching）是浏览器端保存数据用于快速读取或避免重复资源请求的优化机制，有效的缓存使用可以避免重复的网络请求和加快页面速度,从而提高用户体验, 目前主要的缓存机制有：http缓存，websql，cookielocalstorage, session,cacheStorage, flash缓存等, 下面将主要对http缓存机制进行详细分析.<br><a id="more"></a></p>
-</blockquote>
-<h2 id="Expires与Cache-Control原理"><a href="#Expires与Cache-Control原理" class="headerlink" title="Expires与Cache-Control原理"></a>Expires与Cache-Control原理</h2><p>http首部Expires和Cache-Control字段是服务端用来约定和客户端的有效时间,格式如下：<br><figure class="highlight avrasm"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="symbol">Expire:</span>Thu, <span class="number">31</span> <span class="keyword">Dec</span> <span class="number">2037</span> <span class="number">23</span>:<span class="number">55</span>:<span class="number">55</span> GMT</div><div class="line">Cache-Control: max-age = <span class="number">315360000</span></div></pre></td></tr></table></figure></p>
-<ol>
-<li><p>浏览器第一次跟服务器请求一个资源，服务器在返回这个资源的同时，在response的header会加上Expires/cach-control的header；</p>
-</li>
-<li><p>浏览器再请求这个资源时，先从缓存中寻找，找到这个资源后，比较expires或cache-control的max-age字段值做比较, 如果在有效期内，则缓存命中，读取缓存内容，否则重新向服务器发送请求；</p>
-</li>
-<li><p>Header在重新加载的时候会被更新</p>
-</li>
-</ol>
-<h3 id="联系和区别"><a href="#联系和区别" class="headerlink" title="联系和区别"></a>联系和区别</h3><ul>
-<li>Expires规定了缓存失效时间（Date为当前时间），而Cache-Control的max-age规定了缓存有效时间（2552s), 前者是绝对时间，后者是相对时间</li>
-<li>Expires是HTTP1.0的东西，而Cache-Control是HTTP1.1的</li>
-<li>若响应头Expires和Cache-Control同时存在，Cache-Control优先级高于Expire</li>
+                <p>《css权威指南》读书笔记<br><a id="more"></a></p>
+<h2 id="第8章-内边距-边框和外边距"><a href="#第8章-内边距-边框和外边距" class="headerlink" title="第8章 内边距 边框和外边距"></a>第8章 内边距 边框和外边距</h2><h3 id="外边距"><a href="#外边距" class="headerlink" title="外边距"></a>外边距</h3><ul>
+<li>对外边距设置百分数，该值是相对于父元素的width计算的（不仅应用于左右外边距是这样，也应用于上下外边距）</li>
+<li>margin: top right bottom left </li>
+<li>规则<br><code>如果缺少左边距的值，则使用右外边距的值</code><br><code>如果缺少下边距的值，则使用上外边距的值</code><br><code>如果缺少右外边距的值，则使用上外边距的值</code></li>
+<li>正常流中垂直相邻的外边距会合并</li>
+<li>行内非替换元素的外边距不会改变一个元素的行高</li>
+<li>对于只包含文本的行，能改变行间距的属性只有<code>line-height</code>、<code>font-size</code>和<code>vertical-align</code></li>
 </ul>
-<h3 id="缺点"><a href="#缺点" class="headerlink" title="缺点"></a>缺点</h3><ul>
-<li>Exipires返回的是一个绝对时间，在服务器时间与客户端时间相差较大的时候，缓存命中不准确，如：随意修改客户端时钟。</li>
+<h3 id="边框"><a href="#边框" class="headerlink" title="边框"></a>边框</h3><ul>
+<li>边框默认和前景色一致，即color属性值</li>
+<li>border-style的默认值是none，当设置<code>border-style:none</code>,不仅边框的样式没有，宽度也会变为0，故只有当边框样式存在才能设置边框的宽度</li>
+<li><code>border-color: transparent</code>创建一个不可见的边框</li>
+<li>不论行内元素的边框指定怎样的宽度，元素的行高不会改变</li>
 </ul>
-<p> 如果单只设置有效时间，如文件过了有效期后，内容并没有发生改变，还是可以用缓存数据，这个时候又怎么判断服务端文件有没有更新呢？主要有两种方式：</p>
+<h3 id="内边距"><a href="#内边距" class="headerlink" title="内边距"></a>内边距</h3><ul>
+<li>默认，元素没有内边距</li>
+<li>像外边距一样，百分数值要相对于父元素的width值计算</li>
+<li>区别于外边距，内边距不合并</li>
+<li>行内非替换元素的内边距不会改变一个元素的行高</li>
+<li>区别于外边距，对行内非替换元素设置左右内边距，将是可见的</li>
+</ul>
+<h2 id="颜色和背景"><a href="#颜色和背景" class="headerlink" title="颜色和背景"></a>颜色和背景</h2><h3 id="颜色"><a href="#颜色" class="headerlink" title="颜色"></a>颜色</h3><h4 id="前景色"><a href="#前景色" class="headerlink" title="前景色"></a>前景色</h4><p>设置一个元素的前景色，主要利用属性color</p>
 <ul>
-<li>Last-Modified,If-Modified-since: 在约定有效期的基础上，增加文件是否修改的字段进行再次验证</li>
-<li>ETag, If-None-Match: 在约定有效期的基础上，增加文件版本号的验证</li>
+<li>对于表单元素，设置前景色<code>input { color: gray }</code>只会影响文本输入框样式，这是由css1无法区分不同类型的input元素导致的，可以通过以下属性选择器来设置复选框和单选按钮的样式<br><code>input[type=&quot;radio&quot;] { color: #333 }</code><br><code>input[type=&quot;checkbox&quot;] { color: #666 }</code></li>
+<li>color属性是可以继承的</li>
 </ul>
-<h3 id="Last-Modified-If-Modified-since原理"><a href="#Last-Modified-If-Modified-since原理" class="headerlink" title="Last-Modified,If-Modified-since原理"></a>Last-Modified,If-Modified-since原理</h3> <figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="selector-tag">Last-Modified</span>: <span class="selector-tag">Tue</span>, 12 <span class="selector-tag">Jan</span> 2016 03<span class="selector-pseudo">:08</span><span class="selector-pseudo">:53</span> <span class="selector-tag">GMT</span> </div><div class="line"><span class="selector-tag">If-Modified-Since</span>: <span class="selector-tag">Tue</span>, 12 <span class="selector-tag">Jan</span> 2016 03<span class="selector-pseudo">:08</span><span class="selector-pseudo">:53</span> <span class="selector-tag">GMT</span></div></pre></td></tr></table></figure>
-<ul>
-<li><p>浏览器第一次向服务器请求一个资源，服务器在返回这个资源的同时，在respone的header加上Last-Modified字段，表示该资源在服务器上的最后修改时间；</p>
-</li>
-<li><p>浏览器再次向服务器请求这个资源时，在request的header上加上If-Modified-Since字段，这个值就是上一次请求时返回的Last-Modified的值;</p>
-</li>
-<li><p>服务器收到资源请求时，比较If-Modified-Since和Last-Modified字段值，若相同，则说明文件没有修改，返回304 Not Modified, 浏览器从缓存中加载资源；若不相同，说明文件被更新，浏览器直接从服务器加载资源, 返回200；</p>
-</li>
-<li><p>重新加载资源时更新Last-Modified Header</p>
-</li>
+<h4 id="背景色"><a href="#背景色" class="headerlink" title="背景色"></a>背景色</h4><ul>
+<li>background-color 默认是transparent且不能继承<h4 id="背景图片"><a href="#背景图片" class="headerlink" title="背景图片"></a>背景图片</h4></li>
+<li>设置背景图像的同时最好再指定一个背景色，防止因为某种原因无法加载图片，用户代理会使用指定的背景色取代图片</li>
+<li><code>background-repeat: repeat-x | repeat-y</code>  分别设置在水平，垂直方向上的重复 <code>no-repeat</code>不重复</li>
+<li><code>background-position: x y</code>设置背景图位置</li>
 </ul>
-<h3 id="缺点-1"><a href="#缺点-1" class="headerlink" title="缺点"></a>缺点</h3><ul>
-<li>Last-Modified标注的最后修改只能精确到秒级，如果某些文件在1秒钟以内，被修改多次的话，它将不能准确标注文件的修改时间</li>
-<li>如果某些文件会被定期生成，但有时内容并没有任何变化（仅仅改变了时间），但Last-Modified却改变了，导致文件没法使用缓存</li>
-<li>有可能存在服务器没有准确获取文件修改时间，或者与代理服务器时间不一致等情形</li>
-</ul>
-<h3 id="ETag-If-None-Match原理"><a href="#ETag-If-None-Match原理" class="headerlink" title="ETag, If-None-Match原理"></a>ETag, If-None-Match原理</h3><p>ETag解决了Last-Modifiend的缺陷，ETag不仅仅跟最后修改时间决定, 它是根据当前请求的资源生成的一个唯一标识符（默认是由文件的索引节（INode），大小（Size）和最后修改时间（MTime）进行Hash后得到的)<br><figure class="highlight avrasm"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="symbol">ETag:</span> <span class="string">"17fd8-5291a5f96fd20"</span></div></pre></td></tr></table></figure></p>
-<ul>
-<li><p>浏览器第一次向服务器请求一个资源，服务器在返回这个资源的同时，在respone的header加上ETag字段；</p>
-</li>
-<li><p>浏览器再次跟服务器请求这个资源时，在request的header上加上If-None-Match，这个值就是上一次请求时返回的ETag的值；</p>
-</li>
-<li><p>服务器再次收到资源请求时，再根据资源生成一个新的ETag，与浏览器传过来If-None-Match比较，如果这两个值相同就说明资源没有变化，则返回304 Not Modified, 浏览器从缓存中加载资源，否则返回200 资源内容。与Last-Modified不一样的是，当服务器返回304 Not Modified的响应时，由于ETag重新生成过，response header中还会把这个ETag返回，即使这个ETag跟之前的没有变化</p>
-</li>
-</ul>
-<h3 id="区别和联系"><a href="#区别和联系" class="headerlink" title="区别和联系"></a>区别和联系</h3><p>如果两者同时存在，If-None-Match优先，忽略If-Modified-Since</p>
-<h3 id="http缓存机制流程图"><a href="#http缓存机制流程图" class="headerlink" title="http缓存机制流程图"></a>http缓存机制流程图</h3><p><img src="http-cache.png" alt=""></p>
-<h2 id="用户行为与缓存"><a href="#用户行为与缓存" class="headerlink" title="用户行为与缓存"></a>用户行为与缓存</h2><table>
+<p><code>x,y</code>等价的位置关键字</p>
+<table>
 <thead>
 <tr>
-<th>用户操作</th>
-<th style="text-align:center">Expire/Cache-Control</th>
-<th style="text-align:right">Last-Modified/Etag</th>
+<th>单个关键字</th>
+<th style="text-align:center">等价关键字</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>地址栏回车</td>
-<td style="text-align:center">有效</td>
-<td style="text-align:right">有效</td>
+<td>center</td>
+<td style="text-align:center">center center</td>
 </tr>
 <tr>
-<td>页面链接跳转</td>
-<td style="text-align:center">有效</td>
-<td style="text-align:right">有效</td>
+<td>top</td>
+<td style="text-align:center">top center</td>
 </tr>
 <tr>
-<td>新窗口打开</td>
-<td style="text-align:center">有效</td>
-<td style="text-align:right">有效</td>
+<td>bottom</td>
+<td style="text-align:center">bottom center</td>
 </tr>
 <tr>
-<td>前进/后退</td>
-<td style="text-align:center">有效</td>
-<td style="text-align:right">有效</td>
+<td>right</td>
+<td style="text-align:center">center right or right center</td>
 </tr>
 <tr>
-<td>刷新(command + r)</td>
-<td style="text-align:center">无效</td>
-<td style="text-align:right">有效</td>
-</tr>
-<tr>
-<td>强制刷新(command + shift + r)</td>
-<td style="text-align:center">无效</td>
-<td style="text-align:right">无效</td>
+<td>left</td>
+<td style="text-align:center">center left or left center</td>
 </tr>
 </tbody>
 </table>
-<h2 id="禁用缓存"><a href="#禁用缓存" class="headerlink" title="禁用缓存"></a>禁用缓存</h2><p>下面情况无法被浏览器缓存</p>
-<ul>
-<li>HTTP信息头中包含Cache-Control:no-cache，pragma:no-cache（HTTP1.0），或Cache-Control:max-age=0等告诉浏览器不用缓存的请求</li>
-<li>需要根据Cookie，认证信息等决定输入内容的动态请求是不能被缓存的</li>
-<li>经过HTTPS安全加密的请求（有人也经过测试发现，ie其实在头部加入Cache-Control：max-age信息，firefox在头部加入Cache-Control:Public之后，能够对HTTPS的资源进行缓存，参考《HTTPS的七个误解》）</li>
-<li>POST请求无法被缓存</li>
-<li>HTTP响应头中不包含Last-Modified/Etag，也不包含Cache-Control/Expires的请求无法被缓存</li>
-</ul>
 
 
                 <hr>
@@ -301,12 +264,12 @@
                 <ul class="pager">
                     
                         <li class="previous">
-                            <a href="/2017/03/06/CSS深入理解之line-height/" data-toggle="tooltip" data-placement="top" title="CSS深入理解之line-height">&larr; Previous Post</a>
+                            <a href="/2017/01/22/css-depth-understanding/" data-toggle="tooltip" data-placement="top" title="css深入理解篇">&larr; Previous Post</a>
                         </li>
                     
                     
                         <li class="next">
-                            <a href="/2017/02/09/Mac下安装Win7-VirtualBox篇/" data-toggle="tooltip" data-placement="top" title="Mac下安装Win7--VirtualBox篇">Next Post &rarr;</a>
+                            <a href="/2017/01/10/react-css-modules/" data-toggle="tooltip" data-placement="top" title="React中样式处理">Next Post &rarr;</a>
                         </li>
                     
                 </ul>
@@ -339,7 +302,7 @@
                     <h5><a href="/tags/">FEATURED TAGS</a></h5>
                     <div class="tags">
                        
-                          <a class="tag" href="/tags/#http" title="http">http</a>
+                          <a class="tag" href="/tags/#CSS" title="CSS">CSS</a>
                         
                     </div>
                 </section>
@@ -377,8 +340,8 @@
 <script type="text/javascript">
     /* * * CONFIGURATION VARIABLES * * */
     var disqus_shortname = "juanha";
-    var disqus_identifier = "http://kaijun.rocks/hexo-theme-huxblog/2017/03/05/http缓存机制浅析/";
-    var disqus_url = "http://kaijun.rocks/hexo-theme-huxblog/2017/03/05/http缓存机制浅析/";
+    var disqus_identifier = "http://kaijun.rocks/hexo-theme-huxblog/2017/01/22/css-authoritative-guide-note/";
+    var disqus_url = "http://kaijun.rocks/hexo-theme-huxblog/2017/01/22/css-authoritative-guide-note/";
 
     (function() {
         var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;

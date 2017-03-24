@@ -13,11 +13,11 @@
 
     <title>
         
-          xx-net翻墙工具配置 - juanha的博客 | Juanha&#39;s Blog
+          Mac下安装Win7--VirtualBox篇 - juanha的博客 | Juanha&#39;s Blog
         
     </title>
 
-    <link rel="canonical" href="http://kaijun.rocks/hexo-theme-huxblog/2017/03/19/xx-net翻墙工具配置/">
+    <link rel="canonical" href="http://kaijun.rocks/hexo-theme-huxblog/2017/02/09/mac-win7-virtualbox/">
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="/css/bootstrap.min.css">
@@ -167,16 +167,12 @@
                         
                           <a class="tag" href="/tags/#工具" title="工具">工具</a>
                         
-                          <a class="tag" href="/tags/#翻墙工具" title="翻墙工具">翻墙工具</a>
-                        
-                          <a class="tag" href="/tags/#xx-net" title="xx-net">xx-net</a>
-                        
                     </div>
-                    <h1>xx-net翻墙工具配置</h1>
+                    <h1>Mac下安装Win7--VirtualBox篇</h1>
                     <h2 class="subheading"></h2>
                     <span class="meta">
                         Posted by Juan on
-                        2017-03-19
+                        2017-02-09
                     </span>
                 </div>
             </div>
@@ -195,24 +191,62 @@
                 col-md-10 col-md-offset-1
                 post-container">
 
-                <p>mac平台下配置xx-net<br><a id="more"></a></p>
-<h3 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h3><p>xx-net是一款集成goagent，比goagent配置更加简单，访问速度更快的翻墙工具，特点：</p>
-<ul>
-<li>集成搜索Google IP</li>
-<li>基于web的配置页面，人性化交互</li>
-<li>内置了公共appid,安装即可翻墙上网（建议创建自己的appid)</li>
+                <blockquote>
+<p>VirtualBox、VMware Fusion 和 Parallels Desktop for Mac 是Mac上比较知名的几款虚拟机软件，其中VirtualBox 是一款开源虚拟机软件。由德国 Innotek 公司开发，Sun Microsystems公司出品, 号称是最强的免费虚拟机软件，它不仅具有丰富的特色，而且性能也很优异！简单易用,与mac系统无缝连接。因此在这里选择了用virtualbox这款虚拟机来安装windows7系统。</p>
+</blockquote>
+<hr>
+<h2 id="使用环境和软件"><a href="#使用环境和软件" class="headerlink" title="使用环境和软件"></a>使用环境和软件</h2><ul>
+<li>Mac OS X 10.12.1</li>
+<li>2.2 GHz Intel Core i7</li>
+<li>VirtualBox 5.1.14</li>
+<li>Windows 7 x86</li>
 </ul>
-<h3 id="下载"><a href="#下载" class="headerlink" title="下载"></a>下载</h3><p>选择稳定版本下载<br><a href="https://github.com/XX-net/XX-Net/blob/master/code/default/download.md" target="_blank" rel="external">https://github.com/XX-net/XX-Net/blob/master/code/default/download.md</a></p>
-<h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><ol>
-<li>解压下载好的压缩包，点击start运行，启动xx-net</li>
-<li>打开<a href="http://127.0.0.1:8085/" target="_blank" rel="external">http://127.0.0.1:8085/</a>查看GAEProxy状态信息</li>
-</ol>
-<h3 id="手动安装CA认证"><a href="#手动安装CA认证" class="headerlink" title="手动安装CA认证"></a>手动安装CA认证</h3><ol>
-<li>Finder -&gt; 应用程序 -&gt; 实用工具文件夹 -&gt; 钥匙串访问</li>
-<li>文件 -&gt; 导入项目 -&gt; /XX-Net-3.x.x/data/gae_proxy/CA.crt</li>
-</ol>
-<h3 id="配置http代理（推荐Chrome-SwitchyOmega）"><a href="#配置http代理（推荐Chrome-SwitchyOmega）" class="headerlink" title="配置http代理（推荐Chrome + SwitchyOmega）"></a>配置http代理（推荐Chrome + SwitchyOmega）</h3><p>直接参考<a href="https://github.com/XX-net/XX-Net/wiki/%E4%BD%BF%E7%94%A8Chrome%E6%B5%8F%E8%A7%88%E5%99%A8" target="_blank" rel="external">windows下使用浏览器设置xx-net</a>设置代理方案二章节</p>
-<h3 id="创建部署自己的appid"><a href="#创建部署自己的appid" class="headerlink" title="创建部署自己的appid"></a>创建部署自己的appid</h3><p>虽然系统内置了公共appid, 还是建议部署自己的appid，公共appid限制看视频。<br><a href="https://github.com/XX-net/XX-Net/wiki/how-to-create-my-appids" target="_blank" rel="external">如何创建自己的appid</a></p>
+<h2 id="安装virtualbox"><a href="#安装virtualbox" class="headerlink" title="安装virtualbox"></a>安装virtualbox</h2><h3 id="第一步：获取virtualbox"><a href="#第一步：获取virtualbox" class="headerlink" title="第一步：获取virtualbox"></a>第一步：获取virtualbox</h3><p>在<a href="https://www.virtualbox.org/wiki/Downloads" target="_blank" rel="external">virtualbox官网</a>选择mac版最新版本下载<br><img src="download-virtualbox.png" alt=""></p>
+<h3 id="第二步：安装virtualbox"><a href="#第二步：安装virtualbox" class="headerlink" title="第二步：安装virtualbox"></a>第二步：安装virtualbox</h3><p>双击刚刚下好的virtualbox安装包，根据提示双击VirtualBox.mpkg图标，一路顺着安装就好了</p>
+<blockquote>
+<p><img src="install-virtualbox.png" alt=""></p>
+</blockquote>
+<h2 id="创建新的虚拟机"><a href="#创建新的虚拟机" class="headerlink" title="创建新的虚拟机"></a>创建新的虚拟机</h2><p>照着下面图中红色框的选项一步步操作就好了，这里不再赘述</p>
+<p><img src="new-1.png" alt=""></p>
+<p><img src="new-2.png" alt=""></p>
+<p><img src="new-4.png" alt=""></p>
+<p><img src="new-5.png" alt=""></p>
+<p><img src="new-6.png" alt=""></p>
+<p><img src="new-7.png" alt=""></p>
+<h2 id="安装win7"><a href="#安装win7" class="headerlink" title="安装win7"></a>安装win7</h2><h3 id="下载windows7镜像文件"><a href="#下载windows7镜像文件" class="headerlink" title="下载windows7镜像文件"></a>下载windows7镜像文件</h3><p>windows7 32位纯净版下载地址：<a href="http://www.xitongtiandi.com/Windows7/148.html" target="_blank" rel="external">http://www.xitongtiandi.com/Windows7/148.html</a></p>
+<h3 id="设定磁盘路径"><a href="#设定磁盘路径" class="headerlink" title="设定磁盘路径"></a>设定磁盘路径</h3><p>点击红色框选取刚刚下载好的win7系统文件，设定之后，点击启动，进入到安装win7页面<br><img src="win7-1.png" alt=""></p>
+<p><img src="win7-2.png" alt=""></p>
+<h3 id="安装win7-1"><a href="#安装win7-1" class="headerlink" title="安装win7"></a>安装win7</h3><p>在安装win7页面，选择B项，进入到PE系统，这里使用的是通过PE系统来安装系统的方法<br><img src="win7-3.png" alt=""></p>
+<p>若安装首页出现卡顿，迟迟没有反应，则关掉窗口重新启动<br><img src="win7-5.png" alt=""></p>
+<p>进入到PE系统后，双击自动换分硬盘为4个1区的图标，点击确定，一路点yes，稍后就划分好了四个磁盘区<br><img src="win7-6.png" alt=""></p>
+<p>磁盘划分成功后，会自动弹出是否立即安装系统的框，点击确定<br><img src="win7-7.png" alt=""></p>
+<p>下面开始进入到了自动化安装win7系统程序，耐心等待安装完成即可<br><img src="win7-8.png" alt=""></p>
+<p><img src="win7-9.png" alt=""></p>
+<p><img src="win7-10.png" alt=""></p>
+<p><img src="win7-11.png" alt=""></p>
+<p><img src="win7-12.png" alt=""></p>
+<p>至此，windows7系统安装完成！</p>
+<h2 id="安装VirtualBox-Guest-Additions"><a href="#安装VirtualBox-Guest-Additions" class="headerlink" title="安装VirtualBox Guest Additions"></a>安装VirtualBox Guest Additions</h2><h3 id="为何要安装virtualbox-guest-addtions"><a href="#为何要安装virtualbox-guest-addtions" class="headerlink" title="为何要安装virtualbox guest addtions"></a>为何要安装virtualbox guest addtions</h3><p>Win7虽然安装好了，但是在使用方面，很多地方怪怪的，比如: 拖动虚拟机窗口会导致系统两边留空白，如下图所示<br><img src="add-1.png" alt=""><br>需要快捷键（command）实现Mac和win7系统切换，不顺手，因此安装VirtualBox Guest Additions可以改善这些状况，它包含了可优化操作系统以实现更佳性能和可用性的设备驱动程序和系统应用程序，有以下功能:</p>
+<ul>
+<li>Mouse pointer integration（滑鼠游标整合）</li>
+<li>Better video support（较佳的显示支援）</li>
+<li>Time synchronization（时间同步）</li>
+<li>Shared folders（共享档案夾）</li>
+<li>Seamless windows（无缝模式）</li>
+<li>Shared clipboard（共享剪贴版）</li>
+<li>Automated Windows logons（Windows 自动登入）</li>
+</ul>
+<h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><p>虚拟机系统窗口 &gt; Devices &gt; insert into guest addtions cd image </p>
+<p>回到桌面，打开计算机，则会看到多了个CD驱动器<br><img src="add-3.png" alt=""></p>
+<p>点开驱动器，选择VirtualBox Guest Additions进行安装，默认点下一步，中间会弹出要安装其他程序窗口，全部选择安装，直至安装成功<br><img src="add-4.png" alt=""></p>
+<p><img src="add-5.png" alt=""></p>
+<p><img src="add-6.png" alt=""><br>VirtualBox Guest Additions安装完成，重启电脑，我们就能享用它给我们带来的便利了！拖动窗口试试~</p>
+<h2 id="设置共享"><a href="#设置共享" class="headerlink" title="设置共享"></a>设置共享</h2><p>实现Mac系统和Windows7系统之间的文件共享，还需要作一些设置</p>
+<h3 id="设置共享文件夹"><a href="#设置共享文件夹" class="headerlink" title="设置共享文件夹"></a>设置共享文件夹</h3><p><img src="share-1.png" alt=""></p>
+<h3 id="映射网络驱动"><a href="#映射网络驱动" class="headerlink" title="映射网络驱动"></a>映射网络驱动</h3><p><img src="share-2.png" alt=""></p>
+<p><img src="share-3.png" alt=""></p>
+<p>至此，就可以在选取的共享文件夹中实现mac系统和win7系统的文件共享了!</p>
+<p>此外，使用command + f 键可实现win7系统全屏切换</p>
 
 
                 <hr>
@@ -222,12 +256,12 @@
                 <ul class="pager">
                     
                         <li class="previous">
-                            <a href="/2017/03/23/css-layout/" data-toggle="tooltip" data-placement="top" title="css-layout">&larr; Previous Post</a>
+                            <a href="/2017/03/05/http-cache/" data-toggle="tooltip" data-placement="top" title="http缓存机制浅析">&larr; Previous Post</a>
                         </li>
                     
                     
                         <li class="next">
-                            <a href="/2017/03/19/React中样式处理/" data-toggle="tooltip" data-placement="top" title="React中样式处理">Next Post &rarr;</a>
+                            <a href="/2017/01/22/css-depth-understanding/" data-toggle="tooltip" data-placement="top" title="css深入理解篇">Next Post &rarr;</a>
                         </li>
                     
                 </ul>
@@ -245,6 +279,20 @@
             </div>
     <!-- Side Catalog Container -->
         
+            <div class="
+                col-lg-2 col-lg-offset-0
+                visible-lg-block
+                sidebar-container
+                catalog-container">
+                <div class="side-catalog">
+                    <hr class="hidden-sm hidden-xs">
+                    <h5>
+                        <a class="catalog-toggle" href="#">CATALOG</a>
+                    </h5>
+                    <ul class="catalog-body"></ul>
+                </div>
+            </div>
+        
 
     <!-- Sidebar Container -->
 
@@ -261,10 +309,6 @@
                     <div class="tags">
                        
                           <a class="tag" href="/tags/#工具" title="工具">工具</a>
-                        
-                          <a class="tag" href="/tags/#翻墙工具" title="翻墙工具">翻墙工具</a>
-                        
-                          <a class="tag" href="/tags/#xx-net" title="xx-net">xx-net</a>
                         
                     </div>
                 </section>
@@ -302,8 +346,8 @@
 <script type="text/javascript">
     /* * * CONFIGURATION VARIABLES * * */
     var disqus_shortname = "juanha";
-    var disqus_identifier = "http://kaijun.rocks/hexo-theme-huxblog/2017/03/19/xx-net翻墙工具配置/";
-    var disqus_url = "http://kaijun.rocks/hexo-theme-huxblog/2017/03/19/xx-net翻墙工具配置/";
+    var disqus_identifier = "http://kaijun.rocks/hexo-theme-huxblog/2017/02/09/mac-win7-virtualbox/";
+    var disqus_url = "http://kaijun.rocks/hexo-theme-huxblog/2017/02/09/mac-win7-virtualbox/";
 
     (function() {
         var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
@@ -481,6 +525,50 @@
 
 
 <!-- Side Catalog -->
+
+<script type="text/javascript">
+    function generateCatalog (selector) {
+        var P = $('div.post-container'),a,n,t,l,i,c;
+        a = P.find('h1,h2,h3,h4,h5,h6');
+        a.each(function () {
+            n = $(this).prop('tagName').toLowerCase();
+            i = "#"+$(this).prop('id');
+            t = $(this).text();
+            c = $('<a href="'+i+'" rel="nofollow">'+t+'</a>');
+            l = $('<li class="'+n+'_nav"></li>').append(c);
+            $(selector).append(l);
+        });
+        return true;    
+    }
+
+    generateCatalog(".catalog-body");
+
+    // toggle side catalog
+    $(".catalog-toggle").click((function(e){
+        e.preventDefault();
+        $('.side-catalog').toggleClass("fold")
+    }))
+
+    /*
+     * Doc: https://github.com/davist11/jQuery-One-Page-Nav
+     * Fork by Hux to support padding
+     */
+    async("/js/jquery.nav.js", function () {
+        $('.catalog-body').onePageNav({
+            currentClass: "active",
+            changeHash: !1,
+            easing: "swing",
+            filter: "",
+            scrollSpeed: 700,
+            scrollOffset: 0,
+            scrollThreshold: .2,
+            begin: null,
+            end: null,
+            scrollChange: null,
+            padding: 80
+        });
+    });
+</script>
 
 
 
