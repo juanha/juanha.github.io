@@ -198,8 +198,22 @@
                 col-md-10 col-md-offset-1
                 post-container">
 
-                <h2 id="测试codepen"><a href="#测试codepen" class="headerlink" title="测试codepen"></a>测试codepen</h2> <iframe id="cp_embed_WpJyzL" src="//codepen.io/juanha|anonymous|anon/embed/WpJyzL?height=[265&theme-id=0&slug-hash=WpJyzL&default-tab=[js,result" scrolling="no" frameborder="no" height="[265" allowtransparency="true" allowfullscreen="true" class="cp_embed_iframe" style="width: 100%; overflow: hidden;"></iframe>
-
+                <blockquote>
+<p>css布局是css中重要的一部分，下面整理常用css布局方案，包括垂直水平居中，单列，多列布局</p>
+</blockquote>
+<h1 id="水平垂直居中"><a href="#水平垂直居中" class="headerlink" title="水平垂直居中"></a>水平垂直居中</h1><h2 id="水平居中"><a href="#水平居中" class="headerlink" title="水平居中"></a>水平居中</h2><p>根据行内元素 or 块级元素，是否定宽两个维度，采取不同的布局方式</p>
+<h3 id="htm结构"><a href="#htm结构" class="headerlink" title="htm结构"></a>htm结构</h3> <iframe id="cp_embed_ryZeVK" src="//codepen.io/juanha|anonymous|anon/embed/ryZeVK?height=134&theme-id=0&slug-hash=ryZeVK&default-tab=html&embed-version=2" scrolling="no" frameborder="no" height="134" allowtransparency="true" allowfullscreen="true" class="cp_embed_iframe" style="width: 100%; overflow: hidden;"></iframe>
+<ul>
+<li>行内元素: 父元素设为<code>text-aligin:center</code></li>
+<li>块级元素&amp;&amp;定宽: 子元素设置<code>margin: 0 auto</code> </li>
+<li>块级元素&amp;&amp;未定宽: 将块级元素转为行内元素处理<code>display: inline</code>, 父元素<code>text-aligin: center</code> </li>
+</ul>
+<h2 id="垂直居中"><a href="#垂直居中" class="headerlink" title="垂直居中"></a>垂直居中</h2><h3 id="单行文本："><a href="#单行文本：" class="headerlink" title="单行文本："></a>单行文本：</h3> <iframe id="cp_embed_zZJoBm" src="//codepen.io/juanha|anonymous|anon/embed/zZJoBm?height=180&theme-id=0&slug-hash=zZJoBm&default-tab=css,result&embed-version=2" scrolling="no" frameborder="no" height="180" allowtransparency="true" allowfullscreen="true" class="cp_embed_iframe" style="width: 100%; overflow: hidden;"></iframe>
+<h3 id="多行文本"><a href="#多行文本" class="headerlink" title="多行文本:"></a>多行文本:</h3> <iframe id="cp_embed_XMPMqz" src="//codepen.io/juanha|anonymous|anon/embed/XMPMqz?height=300&theme-id=0&slug-hash=XMPMqz&default-tab=css,result&embed-version=2" scrolling="no" frameborder="no" height="300" allowtransparency="true" allowfullscreen="true" class="cp_embed_iframe" style="width: 100%; overflow: hidden;"></iframe>
+<h2 id="水平垂直居中-1"><a href="#水平垂直居中-1" class="headerlink" title="水平垂直居中"></a>水平垂直居中</h2><p>不定宽高图片<code>display: table-cell</code>&amp;&amp;<code>vertical-align</code>布局方案<br> <iframe id="cp_embed_EWezvO" src="//codepen.io/juanha|anonymous|anon/embed/EWezvO?height=300&theme-id=0&slug-hash=EWezvO&default-tab=css&embed-version=2" scrolling="no" frameborder="no" height="300" allowtransparency="true" allowfullscreen="true" class="cp_embed_iframe" style="width: 100%; overflow: hidden;"></iframe></p>
+<p>不定宽高<code>dispaly: absolute</code>&amp;&amp; <code>transfrom</code>布局方案<br> <iframe id="cp_embed_dvqEwo" src="//codepen.io/juanha|anonymous|anon/embed/dvqEwo?height=340&theme-id=0&slug-hash=dvqEwo&default-tab=css,result&embed-version=2" scrolling="no" frameborder="no" height="340" allowtransparency="true" allowfullscreen="true" class="cp_embed_iframe" style="width: 100%; overflow: hidden;"></iframe></p>
+<p>不定宽高<code>flex</code>布局方案<br> <iframe id="cp_embed_GWXbpm" src="//codepen.io/juanha|anonymous|anon/embed/GWXbpm?height=290&theme-id=0&slug-hash=GWXbpm&default-tab=css,result&embed-version=2" scrolling="no" frameborder="no" height="290" allowtransparency="true" allowfullscreen="true" class="cp_embed_iframe" style="width: 100%; overflow: hidden;"></iframe></p>
+<h1 id="单列布局"><a href="#单列布局" class="headerlink" title="单列布局"></a>单列布局</h1><h1 id="两列布局"><a href="#两列布局" class="headerlink" title="两列布局"></a>两列布局</h1><h1 id="三列-amp-多列布局"><a href="#三列-amp-多列布局" class="headerlink" title="三列&amp;多列布局"></a>三列&amp;多列布局</h1>
 
                 <hr>
 
