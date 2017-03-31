@@ -17,7 +17,7 @@
         
     </title>
 
-    <link rel="canonical" href="http://kaijun.rocks/hexo-theme-huxblog/">
+    <link rel="canonical" href="http://kaijun.rocks/hexo-theme-huxblog/page/2/">
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="/css/bootstrap.min.css">
@@ -193,201 +193,26 @@
 
 <div class="post-preview">
 
-    <a href="/2017/03/29/css-layout/">
+    <a href="/2016/10/21/hexo-blog-build/">
         <h2 class="post-title">
-            css-layout
+            搭建个人博客（Hexo3.0)
         </h2>
         <h3 class="post-subtitle">
             
         </h3>
         <div class="post-content-preview">
-            
-css布局是css中重要的一部分，下面根据不同场景罗列一些常用的css布局方案，包括垂直水平居中，单列，两列，三列，多列布局以及业务中用到较特殊的一些布局。通过系统地梳理各种布局方案，一来让自己加深对盒模型，postion，float，margin等属性的理解，二来也方便自己能够灵活地根据不同的业务场景选取合适的布局方案。
-
-水平垂直居中水平居中从元素是行内元素还是块级元素和是否定宽两个维......
+            本教程只适用于mac且已安装配置好git,npm工具的用户
+创建放置hexo目录12$ mkdir hexo $ cd hexo
+安装hexo1$ npm install -g hexo
+初始化hexo 会自动安装依赖1$ hexo init
+启动服务12$ hexo generate$ hexo server
+至此，本地博客搭建完成，可以本地通过(localhost:4000)进行访问
+下......
         </div>
     </a>
     <p class="post-meta">
         Posted by Juan on
-        2017-03-29
-    </p>
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-    <a href="/2017/03/05/http-cache/">
-        <h2 class="post-title">
-            http缓存机制浅析
-        </h2>
-        <h3 class="post-subtitle">
-            
-        </h3>
-        <div class="post-content-preview">
-            
-浏览器缓存（Browser Caching）是浏览器端保存数据用于快速读取或避免重复资源请求的优化机制，有效的缓存使用可以避免重复的网络请求和加快页面速度,从而提高用户体验, 目前主要的缓存机制有：http缓存，websql，cookielocalstorage, session,cacheStorage, flash缓存等, 下面将主要对http缓存机制进行详细分析.
-
-Expires与......
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Juan on
-        2017-03-05
-    </p>
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-    <a href="/2017/02/09/mac-win7-virtualbox/">
-        <h2 class="post-title">
-            Mac下安装Win7--VirtualBox篇
-        </h2>
-        <h3 class="post-subtitle">
-            
-        </h3>
-        <div class="post-content-preview">
-            
-VirtualBox、VMware Fusion 和 Parallels Desktop for Mac 是Mac上比较知名的几款虚拟机软件，其中VirtualBox 是一款开源虚拟机软件。由德国 Innotek 公司开发，Sun Microsystems公司出品, 号称是最强的免费虚拟机软件，它不仅具有丰富的特色，而且性能也很优异！简单易用,与mac系统无缝连接。因此在这里选择了用vir......
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Juan on
-        2017-02-09
-    </p>
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-    <a href="/2017/01/22/css-authoritative-guide-note/">
-        <h2 class="post-title">
-            css权威指南笔记
-        </h2>
-        <h3 class="post-subtitle">
-            
-        </h3>
-        <div class="post-content-preview">
-            《css权威指南》读书笔记
-第8章 内边距 边框和外边距外边距
-对外边距设置百分数，该值是相对于父元素的width计算的（不仅应用于左右外边距是这样，也应用于上下外边距）
-margin: top right bottom left 
-规则如果缺少左边距的值，则使用右外边距的值如果缺少下边距的值，则使用上外边距的值如果缺少右外边距的值，则使用上外边距的值
-正常流中垂直相邻的外边距会合并
-行内非......
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Juan on
-        2017-01-22
-    </p>
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-    <a href="/2017/01/22/css-depth-understanding/">
-        <h2 class="post-title">
-            css深入理解篇
-        </h2>
-        <h3 class="post-subtitle">
-            
-        </h3>
-        <div class="post-content-preview">
-            z-index, float, margin, line-height, vertical-align, overflow
-z-indexz-index: auto ||  || inherit
-特性
-z-index只对定位元素(relative, absolute, fixed, sticky)有作用
-如果定位元素没有发生嵌套，遵循a.后来居上, b. 谁大谁上
-如果定位元素发生嵌套，遵循......
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Juan on
-        2017-01-22
-    </p>
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-    <a href="/2017/01/10/react-css-modules/">
-        <h2 class="post-title">
-            React中样式处理
-        </h2>
-        <h3 class="post-subtitle">
-            
-        </h3>
-        <div class="post-content-preview">
-            简单介绍CSS Modules、React-CSS-Modules、classnames概念及用法
-CSS Modules
-A CSS Module is a CSS file in which all class names and animation names are scoped locally by default.
-
-CSS Modules实现了css模块化，我们可以像引入js文......
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Juan on
-        2017-01-10
-    </p>
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-    <a href="/2016/11/10/xx-net-install-config/">
-        <h2 class="post-title">
-            xx-net翻墙工具配置
-        </h2>
-        <h3 class="post-subtitle">
-            
-        </h3>
-        <div class="post-content-preview">
-            mac平台下配置xx-net
-简介xx-net是一款集成goagent，比goagent配置更加简单，访问速度更快的翻墙工具，特点：
-
-集成搜索Google IP
-基于web的配置页面，人性化交互
-内置了公共appid,安装即可翻墙上网（建议创建自己的appid)
-
-下载选择稳定版本下载https://github.com/XX-net/XX-Net/blob/master/code/def......
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Juan on
-        2016-11-10
-    </p>
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-    <a href="/2016/10/22/markdown-guide/">
-        <h2 class="post-title">
-            MarkDown语法
-        </h2>
-        <h3 class="post-subtitle">
-            
-        </h3>
-        <div class="post-content-preview">
-            标题123456#一级标题##二级标题###三级标题###四级标题####五级标题######六级标题
-
-有序列表1231. item12. item23. item3
-无序列表12- item1- item2
-插入链接1[文本](http://www/baidu/com)
-插入图片1![](http://ww4.sinaimg.cn/orj480/83bfb977gw1f8yuf2mgki......
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Juan on
-        2016-10-22
+        2016-10-21
     </p>
 
 </div>
@@ -399,10 +224,10 @@ CSS Modules实现了css模块化，我们可以像引入js文......
 
 <ul class="pager">
     
-    
-        <li class="next">
-            <a href="/page/2/">Older Posts &rarr;</a>
+        <li class="previous">
+            <a href="/">&larr; Newer Posts</a>
         </li>
+    
     
 </ul>
 
