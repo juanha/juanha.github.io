@@ -13,11 +13,11 @@
 
     <title>
         
-          About - juanha的博客 | Juanha&#39;s Blog
+          juanha的博客 | Juanha&#39;s Blog
         
     </title>
 
-    <link rel="canonical" href="http://kaijun.rocks/hexo-theme-huxblog/about/">
+    <link rel="canonical" href="http://kaijun.rocks/hexo-theme-huxblog/2017/04/06/js-settimeout/">
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="/css/bootstrap.min.css">
@@ -156,192 +156,109 @@
 
 
     <!-- Main Content -->
-    <!-- Page Header -->
-<header class="intro-header" style="background-image: url('/img/about-bg.jpg')">
+    
+<!-- Image to hack wechat -->
+<!-- <img src="http://kaijun.rocks/hexo-theme-huxblog/img/icon_wechat.png" width="0" height="0"> -->
+<!-- <img src="{{ site.baseurl }}/{% if page.header-img %}{{ page.header-img }}{% else %}{{ site.header-img }}{% endif %}" width="0" height="0"> -->
+
+<!-- Post Header -->
+<style type="text/css">
+    header.intro-header{
+        background-image: url('/img/home-bg.jpg')
+    }
+</style>
+<header class="intro-header" >
     <div class="container">
         <div class="row">
-            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 ">
-                <div class="site-heading">
-                    <h1>About</h1>
-                    <!--<hr class="small">-->
-                    <span class="subheading">Hey, this is me.</span>
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="tags">
+                        
+                    </div>
+                    <h1></h1>
+                    <h2 class="subheading"></h2>
+                    <span class="meta">
+                        Posted by Juan on
+                        2017-04-06
+                    </span>
                 </div>
             </div>
         </div>
     </div>
 </header>
 
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
 
-
-<!-- Main Content -->
-<div class="container">
-    <div class="row">
-        
-
-<!-- USE SIDEBAR -->
     <!-- Post Container -->
             <div class="
-                col-lg-8 col-lg-offset-1
-                col-md-8 col-md-offset-1
-                col-sm-12
-                col-xs-12
-                post-container
-            ">
-            
-                <blockquote>
-<p>写写代码，做做设计，看看产品。<br>世界那么大，多玩玩看看。</p>
-</blockquote>
-<p>about me…</p>
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                <hr>
+<p>title: 一道有关setTimeout和闭包的经典面试题<br>date: 2017-04-06 20:33:40<br>tags:</p>
+<h2 id="javascript"><a href="#javascript" class="headerlink" title="  - javascript"></a>  - javascript</h2><p>回顾下闭包形成的条件：</p>
+<ul>
+<li>在函数内部创建新的函数</li>
+<li>内部函数访问了父函数的变量</li>
+</ul>
+<p><code>setTimeout</code>中定义的操作，会放在一个FIFO队列中，且需要等待到函数调用栈清空之后才开始依次执行，这些操作进入队列的顺序，则由设定的延迟时间来决定。</p>
+<h1 id="面试题"><a href="#面试题" class="headerlink" title="面试题"></a>面试题</h1><p>利用闭包，修改下面的代码，让循环输出的结果依次为1， 2， 3， 4， 5<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">for</span> (<span class="keyword">var</span> i=<span class="number">1</span>; i&lt;=<span class="number">5</span>; i++) &#123; </div><div class="line">  setTimeout( <span class="function"><span class="keyword">function</span> <span class="title">timer</span>(<span class="params"></span>) </span>&#123;</div><div class="line">          <span class="built_in">console</span>.log(i);</div><div class="line">              </div><div class="line">  &#125;, i*<span class="number">1000</span>  );</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h1 id="解法1"><a href="#解法1" class="headerlink" title="解法1"></a>解法1</h1><p>利用闭包的特性，通过包裹一层自执行函数为闭包的形成提供条件<br><figure class="highlight lisp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">for (<span class="name">var</span> i=1<span class="comment">; i&lt;=5; i++) &#123; </span></div><div class="line">    (<span class="name">function</span>(<span class="name">i</span>) &#123;</div><div class="line">        setTimeout( <span class="name">function</span> timer() &#123;</div><div class="line">            console.log(<span class="name">i</span>)<span class="comment">;</span></div><div class="line">        &#125;, i*1000 )<span class="comment">;</span></div><div class="line">    &#125;)(<span class="name">i</span>)</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>or<br><figure class="highlight lisp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">for (<span class="name">var</span> i=1<span class="comment">; i&lt;=5; i++) &#123; </span></div><div class="line">    setTimeout( (<span class="name">function</span>(<span class="name">i</span>) &#123;</div><div class="line">        return function() &#123;</div><div class="line">            console.log(<span class="name">i</span>)<span class="comment">;</span></div><div class="line">        &#125;</div><div class="line">    &#125;)(<span class="name">i</span>), i*1000 )<span class="comment">;</span></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h1 id="解法2"><a href="#解法2" class="headerlink" title="解法2"></a>解法2</h1><p>利用<code>setTimeout</code>第三个参数<br><figure class="highlight lisp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">for (<span class="name">var</span> i=1<span class="comment">; i&lt;=5; i++) &#123; </span></div><div class="line">  setTimeout(<span class="name">function</span> (<span class="name">i</span>) &#123;</div><div class="line">    console.log(<span class="name">i</span>)<span class="comment">;</span></div><div class="line">  &#125;, i*1000,i  )<span class="comment">;</span></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h1 id="解法3"><a href="#解法3" class="headerlink" title="解法3"></a>解法3</h1><p>利用<code>bind</code>方法<br><figure class="highlight lisp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">for (<span class="name">var</span> i=1<span class="comment">; i&lt;=5; i++) &#123; </span></div><div class="line">  setTimeout(<span class="name">function</span> (<span class="name">i</span>) &#123;</div><div class="line">    console.log(<span class="name">i</span>)<span class="comment">;</span></div><div class="line">  &#125;.bind(<span class="name">null</span>,i), i*1000 )<span class="comment">;</span></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h1 id="解法4"><a href="#解法4" class="headerlink" title="解法4"></a>解法4</h1><p>利用ES6中的<code>let</code><br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">for</span> (<span class="keyword">let</span> i=<span class="number">1</span>; i&lt;=<span class="number">5</span>; i++) &#123; </div><div class="line">  setTimeout( <span class="function"><span class="keyword">function</span> <span class="title">timer</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="built_in">console</span>.log(i);</div><div class="line">  &#125;, i*<span class="number">1000</span> );</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
 
 
-                <!-- 如果开启评论功能 -->
+                <hr>
+
                 
-                    <hr>
 
+                <ul class="pager">
                     
-
                     
-                    <!-- disqus 评论框 start -->
-                    <div class="comment">
-                        <div id="disqus_thread" class="disqus-thread"></div>
-                    </div>
-                    <!-- disqus 评论框 end -->
+                        <li class="next">
+                            <a href="/2017/03/31/css-flex-layout/" data-toggle="tooltip" data-placement="top" title="css-flex-layout">Next Post &rarr;</a>
+                        </li>
                     
+                </ul>
 
+                
 
-                    
-
-                    
-                    <!-- disqus 公共JS代码 start (一个网页只需插入一次) -->
-                    <script type="text/javascript">
-                        /* * * CONFIGURATION VARIABLES * * */
-                        var disqus_shortname = "juanha";
-                        var disqus_identifier = "http://kaijun.rocks/hexo-theme-huxblog/about/index.html";
-                        var disqus_url = "http://kaijun.rocks/hexo-theme-huxblog/about/index.html";
-
-                        (function() {
-                            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-                            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-                            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-                        })();
-
-                        
-                    </script>
-                    <!-- disqus 公共JS代码 end -->
-                    
-
-
-
+                
+                <!-- disqus 评论框 start -->
+                <div class="comment">
+                    <div id="disqus_thread" class="disqus-thread"></div>
+                </div>
+                <!-- disqus 评论框 end -->
                 
 
             </div>
+    <!-- Side Catalog Container -->
+        
+
     <!-- Sidebar Container -->
+
             <div class="
-                col-lg-3 col-lg-offset-0
-                col-md-3 col-md-offset-0
-                col-sm-12
-                col-xs-12
-                sidebar-container
-            ">
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
                 <!-- Featured Tags -->
                 
                 <section>
                     <!-- no hr -->
                     <h5><a href="/tags/">FEATURED TAGS</a></h5>
                     <div class="tags">
-                        
-                            
-                            <a href="/tags/#CSS" title="CSS" rel="2">CSS</a>
-                            
-                        
-                            
-                        
-                            
-                            <a href="/tags/#工具" title="工具" rel="3">工具</a>
-                            
-                        
-                            
-                        
-                            
-                        
-                            
-                        
-                            
-                        
-                            
-                        
-                            
-                        
-                            
-                        
-                            
-                        
-                            
-                        
-                            
-                        
+                       
                     </div>
                 </section>
                 
 
-                <!-- Short About -->
-                <section class="visible-md visible-lg">
-                    <hr><h5><a href="/about/">ABOUT ME</a></h5>
-                    <div class="short-about">
-
-                        
-                            <img src="/img/avatar.jpg" />
-                        
-
-                        
-                            <p>前端工程师!</p>
-                        
-
-                        <!-- SNS Link -->
-                        <ul class="list-inline">
-                            
-                            
-                            
-                                <li>
-                                    <a target="_blank" href="https://www.zhihu.com/people/juanha">
-                                        <span class="fa-stack fa-lg">
-                                            <i class="fa fa-circle fa-stack-2x"></i>
-                                            <i class="fa  fa-stack-1x fa-inverse">知</i>
-                                        </span>
-                                    </a>
-                                </li>
-                            
-
-                            
-                                <li>
-                                    <a target="_blank" href="http://weibo.com/fhjuanha">
-                                        <span class="fa-stack fa-lg">
-                                            <i class="fa fa-circle fa-stack-2x"></i>
-                                            <i class="fa fa-weibo fa-stack-1x fa-inverse"></i>
-                                        </span>
-                                    </a>
-                                </li>
-                            
-
-                            
-
-                            
-                                <li>
-                                    <a target="_blank"  href="https://github.com/juanha">
-                                        <span class="fa-stack fa-lg">
-                                            <i class="fa fa-circle fa-stack-2x"></i>
-                                            <i class="fa fa-github fa-stack-1x fa-inverse"></i>
-                                        </span>
-                                    </a>
-                                </li>
-                            
-                            
-                            
-                            
-                        </ul>
-                    </div>
-                </section>
-                
                 <!-- Friends Blog -->
                 
                 <hr>
@@ -362,9 +279,66 @@
                 </ul>
                 
             </div>
-        
+
+        </div>
     </div>
-</div>
+</article>
+
+
+
+
+<!-- disqus 公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES * * */
+    var disqus_shortname = "juanha";
+    var disqus_identifier = "http://kaijun.rocks/hexo-theme-huxblog/2017/04/06/js-settimeout/";
+    var disqus_url = "http://kaijun.rocks/hexo-theme-huxblog/2017/04/06/js-settimeout/";
+
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<!-- disqus 公共JS代码 end -->
+
+
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+<!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
+<script>
+    async("https://cdn.bootcss.com/anchor-js/1.1.1/anchor.min.js",function(){
+        anchors.options = {
+          visible: 'always',
+          placement: 'right',
+          icon: '',
+        };
+        anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
+    })
+</script>
+<style>
+    /* place left on bigger screen */
+    @media all and (min-width: 800px) {
+        .anchorjs-link{
+            position: absolute;
+            left: -0.75em;
+            font-size: 1.1em;
+            margin-top : -0.1em;
+        }
+    }
+</style>
+
 
 
     <!-- Footer -->
