@@ -13,11 +13,11 @@
 
     <title>
         
-          css深入理解篇 - juanha的博客 | Juanha&#39;s Blog
+          npm-vs-yarn - juanha的博客 | Juanha&#39;s Blog
         
     </title>
 
-    <link rel="canonical" href="http://kaijun.rocks/hexo-theme-huxblog/2017/01/22/css-depth-understanding/">
+    <link rel="canonical" href="http://kaijun.rocks/hexo-theme-huxblog/2017/04/12/npm-vs-yarn/">
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="/css/bootstrap.min.css">
@@ -174,14 +174,12 @@
                 <div class="post-heading">
                     <div class="tags">
                         
-                          <a class="tag" href="/tags/#CSS" title="CSS">CSS</a>
-                        
                     </div>
-                    <h1>css深入理解篇</h1>
+                    <h1>npm-vs-yarn</h1>
                     <h2 class="subheading"></h2>
                     <span class="meta">
                         Posted by Juan on
-                        2017-01-22
+                        2017-04-12
                     </span>
                 </div>
             </div>
@@ -200,37 +198,7 @@
                 col-md-10 col-md-offset-1
                 post-container">
 
-                <p>z-index, float, margin, line-height, vertical-align, overflow<br><a id="more"></a></p>
-<h2 id="z-index"><a href="#z-index" class="headerlink" title="z-index"></a>z-index</h2><p>z-index: auto || <integar> || inherit</integar></p>
-<h3 id="特性"><a href="#特性" class="headerlink" title="特性"></a>特性</h3><ol>
-<li>z-index只对定位元素(relative, absolute, fixed, sticky)有作用</li>
-<li>如果定位元素没有发生嵌套，遵循a.后来居上, b. 谁大谁上</li>
-<li>如果定位元素发生嵌套，遵循祖先优先原则, 前提z-index是数值不是atuo<h3 id="层叠上下文"><a href="#层叠上下文" class="headerlink" title="层叠上下文"></a>层叠上下文</h3>具有层叠上下文的元素：</li>
-</ol>
-<ul>
-<li>页面根元素</li>
-<li>z-index为数值且是定位元素</li>
-<li>其他属性<h3 id="层叠水平"><a href="#层叠水平" class="headerlink" title="层叠水平"></a>层叠水平</h3>决定同一个层叠上下文中的元素在z轴上的显示顺序，遵循’后来居上’, ‘谁大谁上’层叠准则<br>层叠顺序: 元素发生层叠时候有着特定的的垂直显示顺序<br>著名的7阶层叠水平<br><img src="layerlevel.png" alt=""><h3 id="z-index和层叠上下文"><a href="#z-index和层叠上下文" class="headerlink" title="z-index和层叠上下文"></a>z-index和层叠上下文</h3></li>
-</ul>
-<ol>
-<li>定位元素默认z-index:auto 等价于z-index:0</li>
-<li>z-index不为auto的定位元素才会创建层叠上下文</li>
-<li>z-index层叠顺序的比较止于父级层叠上下文<h3 id="其他属性与层叠上下文"><a href="#其他属性与层叠上下文" class="headerlink" title="其他属性与层叠上下文"></a>其他属性与层叠上下文</h3>其他属性主要是css3中的属性</li>
-</ol>
-<ul>
-<li>z-index不为auto的flex项（display:flex | inline-flex)</li>
-<li>元素的opacity值不是1</li>
-<li>元素的transform值不是1</li>
-<li>元素的mix-blend-mode不是normal</li>
-<li>元素的filter的值不是none</li>
-<li>元素的isolation值是isolate</li>
-<li>position:fixed声明</li>
-<li>will-change指定的属性值为上面任意一个</li>
-<li>元素的-webkit-overflow-scrolling设为touch<h3 id="遵循原则"><a href="#遵循原则" class="headerlink" title="遵循原则"></a>遵循原则</h3></li>
-<li>最小影响化原则<br>目的：避免z-index嵌套混乱<br>做法： 避免使用定位元素</li>
-<li>不二原则<br>目的：避免z-index混乱，一山比一山高的样式问题<br>原因：多人协作以及后期维护<br>做法： 非浮动元素（弹框）避免设置z-index值<br>## </li>
-</ul>
-
+                
 
                 <hr>
 
@@ -239,12 +207,12 @@
                 <ul class="pager">
                     
                         <li class="previous">
-                            <a href="/2017/01/22/css-authoritative-guide-note/" data-toggle="tooltip" data-placement="top" title="css权威指南笔记">&larr; Previous Post</a>
+                            <a href="/2017/06/02/vim-skills/" data-toggle="tooltip" data-placement="top" title="vim-skills">&larr; Previous Post</a>
                         </li>
                     
                     
                         <li class="next">
-                            <a href="/2017/01/10/react-css-modules/" data-toggle="tooltip" data-placement="top" title="React中样式处理">Next Post &rarr;</a>
+                            <a href="/2017/04/06/settimeout-interview-question/" data-toggle="tooltip" data-placement="top" title="一道有关settimeout的经典面试题">Next Post &rarr;</a>
                         </li>
                     
                 </ul>
@@ -277,8 +245,6 @@
                     <h5><a href="/tags/">FEATURED TAGS</a></h5>
                     <div class="tags">
                        
-                          <a class="tag" href="/tags/#CSS" title="CSS">CSS</a>
-                        
                     </div>
                 </section>
                 
@@ -315,8 +281,8 @@
 <script type="text/javascript">
     /* * * CONFIGURATION VARIABLES * * */
     var disqus_shortname = "juanha";
-    var disqus_identifier = "http://kaijun.rocks/hexo-theme-huxblog/2017/01/22/css-depth-understanding/";
-    var disqus_url = "http://kaijun.rocks/hexo-theme-huxblog/2017/01/22/css-depth-understanding/";
+    var disqus_identifier = "http://kaijun.rocks/hexo-theme-huxblog/2017/04/12/npm-vs-yarn/";
+    var disqus_url = "http://kaijun.rocks/hexo-theme-huxblog/2017/04/12/npm-vs-yarn/";
 
     (function() {
         var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
