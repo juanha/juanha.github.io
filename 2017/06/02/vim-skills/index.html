@@ -174,6 +174,8 @@
                 <div class="post-heading">
                     <div class="tags">
                         
+                          <a class="tag" href="/tags/#vim" title="vim">vim</a>
+                        
                     </div>
                     <h1>vim-skills</h1>
                     <h2 class="subheading"></h2>
@@ -199,8 +201,82 @@
                 post-container">
 
                 <p>基于实际开发场景下，vim使用技巧汇总</p>
-<h2 id="删除从指定处到句尾的所有文本，但是不想删除句号，如"><a href="#删除从指定处到句尾的所有文本，但是不想删除句号，如" class="headerlink" title="删除从指定处到句尾的所有文本，但是不想删除句号，如"></a>删除从指定处到句尾的所有文本，但是不想删除句号，如</h2><p><code>I&#39;ve been expecting you, Mister Bond.</code><br>删除从,号到.号之间的文本<br><code>f,
-dt.</code></p>
+<h2 id="查找修改"><a href="#查找修改" class="headerlink" title="查找修改"></a>查找修改</h2><h3 id="删除从指定处到句尾的所有文本，但是不想删除句号"><a href="#删除从指定处到句尾的所有文本，但是不想删除句号" class="headerlink" title="删除从指定处到句尾的所有文本，但是不想删除句号"></a>删除从指定处到句尾的所有文本，但是不想删除句号</h3><p>Example:删除下句从,号到.号之间的文本</p>
+<figure class="highlight vbnet"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">I<span class="comment">'ve been expecting you, Mister Bond.</span></div></pre></td></tr></table></figure>
+<p>Vim操作</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">f,</div><div class="line"><span class="selector-tag">dt</span>.</div></pre></td></tr></table></figure>
+<h3 id="删除中间一段文本"><a href="#删除中间一段文本" class="headerlink" title="删除中间一段文本"></a>删除中间一段文本</h3><p>Example: 删除下句中<code>tasks time but eventually</code></p>
+<figure class="highlight applescript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">This phrase takes <span class="built_in">time</span> <span class="keyword">but</span> eventually gets <span class="keyword">to</span> <span class="keyword">the</span> point.</div></pre></td></tr></table></figure>
+<p>Vim操作</p>
+<figure class="highlight gams"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">ft</div><div class="line">d/<span class="keyword">ge</span></div></pre></td></tr></table></figure>
+<h3 id="在可视模式和操作符待决模式中，选中分隔符-39-quot-lt-区域内外"><a href="#在可视模式和操作符待决模式中，选中分隔符-39-quot-lt-区域内外" class="headerlink" title="在可视模式和操作符待决模式中，选中分隔符&#39;,&quot;,{,[,(,&lt;区域内外"></a>在可视模式和操作符待决模式中，选中分隔符<code>&#39;,&quot;,{,[,(,&lt;</code>区域内外</h3><p>以<code>a</code>开头的文本对象会选择包含分隔符在内的整个文本<br>以<code>i</code>开头的文本会选择分隔符内部的文本，为了便于记忆，可以把<code>i</code>想成<code>inside</code>，而把<code>a</code>想成<code>around</code></p>
+<p><code>{motion}</code>表示分隔符文本对象，常见的包括<code>d{motion}、c{motion}、y{motion}</code></p>
+<p>Example:</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"&#123;url"</span>&gt;</span>&#123;title&#125;<span class="tag">&lt;/<span class="name">a</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>Vim操作</p>
+<figure class="highlight mipsasm"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">cit <span class="comment"># 修改标签内部的内容</span></div><div class="line">yit <span class="comment"># 拷贝标签内的文本</span></div><div class="line"><span class="keyword">dit </span><span class="comment"># 删除标签内的文本</span></div></pre></td></tr></table></figure>
+<p>分隔符文本对象</p>
+<table>
+<thead>
+<tr>
+<th>文本对象</th>
+<th>选择区域</th>
+<th>文本对象</th>
+<th>选择区域</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>a)</td>
+<td>一对圆括号</td>
+<td>i)</td>
+<td>圆括号内</td>
+</tr>
+<tr>
+<td>a}</td>
+<td>一对花括号</td>
+<td>i}</td>
+<td>花括号内</td>
+</tr>
+<tr>
+<td>a]</td>
+<td>一对中括号</td>
+<td>i]</td>
+<td>中括号内</td>
+</tr>
+<tr>
+<td>a&gt;</td>
+<td>一对尖括号</td>
+<td>i&gt;</td>
+<td>尖括号内</td>
+</tr>
+<tr>
+<td>a’</td>
+<td>一对单引号</td>
+<td>i’</td>
+<td>单引号内</td>
+</tr>
+<tr>
+<td>a”</td>
+<td>一对双引号</td>
+<td>i”</td>
+<td>双引号内</td>
+</tr>
+<tr>
+<td>a`</td>
+<td>一对反引号</td>
+<td>i</td>
+<td>反引号内</td>
+</tr>
+<tr>
+<td>at</td>
+<td>一对标签</td>
+<td>it</td>
+<td>标签内</td>
+</tr>
+</tbody>
+</table>
+<h3 id="不用离开vim就能方便调用外部程序"><a href="#不用离开vim就能方便调用外部程序" class="headerlink" title="不用离开vim就能方便调用外部程序"></a>不用离开vim就能方便调用外部程序</h3><figure class="highlight awk"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">:shell <span class="comment"># 启动一个shell会话</span></div><div class="line">pwd <span class="comment"># 执行shell命令</span></div><div class="line">ls</div><div class="line">git grep</div><div class="line"><span class="keyword">exit</span> <span class="comment">#返回vim</span></div></pre></td></tr></table></figure>
 
 
                 <hr>
@@ -215,7 +291,7 @@ dt.</code></p>
                     
                     
                         <li class="next">
-                            <a href="/2017/04/12/npm-vs-yarn/" data-toggle="tooltip" data-placement="top" title="npm-vs-yarn">Next Post &rarr;</a>
+                            <a href="/2017/04/06/settimeout-interview-question/" data-toggle="tooltip" data-placement="top" title="一道有关settimeout的经典面试题">Next Post &rarr;</a>
                         </li>
                     
                 </ul>
@@ -248,6 +324,8 @@ dt.</code></p>
                     <h5><a href="/tags/">FEATURED TAGS</a></h5>
                     <div class="tags">
                        
+                          <a class="tag" href="/tags/#vim" title="vim">vim</a>
+                        
                     </div>
                 </section>
                 
