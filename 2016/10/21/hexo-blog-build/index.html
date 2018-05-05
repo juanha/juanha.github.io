@@ -99,14 +99,14 @@
 
                         
                         <li>
-                            <a href="/about/">About</a>
+                            <a href="/archives/">Archives</a>
                         </li>
                         
                     
 
                         
                         <li>
-                            <a href="/archives/">Archives</a>
+                            <a href="/about/">About</a>
                         </li>
                         
                     
@@ -203,39 +203,39 @@
                 post-container">
 
                 <p>本教程只适用于mac且已安装配置好git,npm工具的用户<br><a id="more"></a></p>
-<h3 id="创建放置hexo目录"><a href="#创建放置hexo目录" class="headerlink" title="创建放置hexo目录"></a>创建放置hexo目录</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ mkdir hexo </div><div class="line">$ <span class="built_in">cd</span> hexo</div></pre></td></tr></table></figure>
-<h3 id="安装hexo"><a href="#安装hexo" class="headerlink" title="安装hexo"></a>安装hexo</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ npm install -g hexo</div></pre></td></tr></table></figure>
-<h3 id="初始化hexo-会自动安装依赖"><a href="#初始化hexo-会自动安装依赖" class="headerlink" title="初始化hexo 会自动安装依赖"></a>初始化hexo 会自动安装依赖</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo init</div></pre></td></tr></table></figure>
-<h3 id="启动服务"><a href="#启动服务" class="headerlink" title="启动服务"></a>启动服务</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ hexo generate</div><div class="line">$ hexo server</div></pre></td></tr></table></figure>
+<h3 id="创建放置hexo目录"><a href="#创建放置hexo目录" class="headerlink" title="创建放置hexo目录"></a>创建放置hexo目录</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ mkdir hexo </span><br><span class="line">$ <span class="built_in">cd</span> hexo</span><br></pre></td></tr></table></figure>
+<h3 id="安装hexo"><a href="#安装hexo" class="headerlink" title="安装hexo"></a>安装hexo</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm install -g hexo</span><br></pre></td></tr></table></figure>
+<h3 id="初始化hexo-会自动安装依赖"><a href="#初始化hexo-会自动安装依赖" class="headerlink" title="初始化hexo 会自动安装依赖"></a>初始化hexo 会自动安装依赖</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo init</span><br></pre></td></tr></table></figure>
+<h3 id="启动服务"><a href="#启动服务" class="headerlink" title="启动服务"></a>启动服务</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
 <p>至此，本地博客搭建完成，可以本地通过(localhost:4000)进行访问</p>
 <p>下面将本地博客部署到github</p>
 <h3 id="创建github账号"><a href="#创建github账号" class="headerlink" title="创建github账号"></a>创建github账号</h3><h3 id="新建repository"><a href="#新建repository" class="headerlink" title="新建repository"></a>新建repository</h3><p>仓库名以’github账号.github.io’命名</p>
 <h3 id="设置Custom-domain"><a href="#设置Custom-domain" class="headerlink" title="设置Custom domain"></a>设置Custom domain</h3><p>进入刚刚创建好的仓库中，从settings进入设置Custom domain并save(邮箱未验证的用户需要先进行邮箱验证)</p>
 <h3 id="本地绑定github账户"><a href="#本地绑定github账户" class="headerlink" title="本地绑定github账户"></a>本地绑定github账户</h3><p>参考<a href="https://help.github.com/articles/set-up-git/" target="_blank" rel="external">设置账号</a>Setting up Git</p>
 <h3 id="设置SSH-keys"><a href="#设置SSH-keys" class="headerlink" title="设置SSH keys"></a>设置SSH keys</h3><p>参考<a href="https://help.github.com/articles/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent/" target="_blank" rel="external">设置ssh</a>Generating a new SSH key</p>
-<h3 id="在hexo部署"><a href="#在hexo部署" class="headerlink" title="在hexo部署"></a>在hexo部署</h3><p>编辑hexo/_config.yml<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">deploy:</div><div class="line">  <span class="built_in">type</span>: git</div><div class="line">  repository: https://github.com/xxx/xxx.github.io.git</div><div class="line">  branch: master</div></pre></td></tr></table></figure></p>
-<h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ npm install hexo-deployer-git --save</div></pre></td></tr></table></figure>
-<h3 id="部署到github"><a href="#部署到github" class="headerlink" title="部署到github"></a>部署到github</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ hexo generate</div><div class="line">$ hexo deploy</div></pre></td></tr></table></figure>
+<h3 id="在hexo部署"><a href="#在hexo部署" class="headerlink" title="在hexo部署"></a>在hexo部署</h3><p>编辑hexo/_config.yml<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">deploy:</span><br><span class="line">  <span class="built_in">type</span>: git</span><br><span class="line">  repository: https://github.com/xxx/xxx.github.io.git</span><br><span class="line">  branch: master</span><br></pre></td></tr></table></figure></p>
+<h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm install hexo-deployer-git --save</span><br></pre></td></tr></table></figure>
+<h3 id="部署到github"><a href="#部署到github" class="headerlink" title="部署到github"></a>部署到github</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
 <p>到这里，就可以通过’github账号.github.io’访问博客了</p>
-<h3 id="个人使用主题"><a href="#个人使用主题" class="headerlink" title="个人使用主题"></a>个人使用主题</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git <span class="built_in">clone</span> https://github.com/litten/hexo-theme-yilia.git themes/yilia</div></pre></td></tr></table></figure>
+<h3 id="个人使用主题"><a href="#个人使用主题" class="headerlink" title="个人使用主题"></a>个人使用主题</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">clone</span> https://github.com/litten/hexo-theme-yilia.git themes/yilia</span><br></pre></td></tr></table></figure>
 <p>在hexo/_config.yml 进行主题更改<br>小技巧: 设置个人头像，可利用微博图床进行设置</p>
 <h3 id="hexo在本地引入图片失败解决方案"><a href="#hexo在本地引入图片失败解决方案" class="headerlink" title="hexo在本地引入图片失败解决方案"></a>hexo在本地引入图片失败解决方案</h3><ol>
 <li><p>_config.yml 中配置</p>
-<figure class="highlight yaml"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="attr">post_asset_folder:</span><span class="literal">true</span></div></pre></td></tr></table></figure>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">post_asset_folder:</span><span class="literal">true</span></span><br></pre></td></tr></table></figure>
 </li>
 <li><p>安装插件</p>
-<figure class="highlight awk"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm install https:<span class="regexp">//gi</span>thub.com<span class="regexp">/CodeFalling/</span>hexo-asset-image --save</div></pre></td></tr></table></figure>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install https:<span class="regexp">//gi</span>thub.com<span class="regexp">/CodeFalling/</span>hexo-asset-image --save</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>创建一篇新文章<br>会自动建立一个与文章同名的文件夹，您可以把与该文章相关的所有资源都放到那个文件夹，如此一来，您便可以更方便的使用资源</p>
 </li>
 </ol>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">hexo new <span class="built_in">test</span></div></pre></td></tr></table></figure>
-<ol>
-<li>在文章中引用图片示例<figure class="highlight less"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">!<span class="selector-attr">[]</span>(./test/xx.png)</div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo new <span class="built_in">test</span></span><br></pre></td></tr></table></figure>
+<ol start="4">
+<li>在文章中引用图片示例<figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">!<span class="selector-attr">[]</span>(./test/xx.png)</span><br></pre></td></tr></table></figure>
 </li>
 </ol>
 <h3 id="同时托管coding-net和github"><a href="#同时托管coding-net和github" class="headerlink" title="同时托管coding.net和github"></a>同时托管coding.net和github</h3><p>在_config.yml中配置</p>
-<figure class="highlight less"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="attribute">deploy</span>:</div><div class="line">  <span class="attribute">type</span>: git</div><div class="line">  <span class="attribute">repo</span>:</div><div class="line">    <span class="attribute">github</span>: git<span class="variable">@github</span>.<span class="attribute">com</span>:juanha/juanha.github.io.git,master</div><div class="line">    <span class="attribute">coding</span>: git<span class="variable">@git</span>.coding.<span class="attribute">net</span>:juanha/juanha.git,master <span class="comment">// 没有coding账号 忽略该行</span></div></pre></td></tr></table></figure>
+<figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">deploy</span>:</span><br><span class="line">  <span class="attribute">type</span>: git</span><br><span class="line">  <span class="attribute">repo</span>:</span><br><span class="line">    <span class="attribute">github</span>: git<span class="variable">@github</span>.<span class="attribute">com</span>:juanha/juanha.github.io.git,master</span><br><span class="line">    <span class="attribute">coding</span>: git<span class="variable">@git</span>.coding.<span class="attribute">net</span>:juanha/juanha.git,master <span class="comment">// 没有coding账号 忽略该行</span></span><br></pre></td></tr></table></figure>
 <h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>编辑文章在hexo/source/_posts/目录下<br>修改配置或者修改文章后都需要执行hexo generate命令方可生效<br>更新到github则需要执行hexo deploy命令重新部署<br>一段时间没更新博客，再使用的时候，发现$hexo command not found, 原因是node版本由之前的v5.12切换到了v6.6,临时解决办法<code>nvm use 5.12.0</code></p>
 
 
@@ -418,7 +418,7 @@
 
                 </ul>
                 <p class="copyright text-muted">
-                    Copyright &copy; Juanha&#39;s Blog 2017 
+                    Copyright &copy; Juanha&#39;s Blog 2018 
                     <br>
                 </p>
             </div>

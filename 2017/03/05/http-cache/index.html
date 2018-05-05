@@ -99,14 +99,14 @@
 
                         
                         <li>
-                            <a href="/about/">About</a>
+                            <a href="/archives/">Archives</a>
                         </li>
                         
                     
 
                         
                         <li>
-                            <a href="/archives/">Archives</a>
+                            <a href="/about/">About</a>
                         </li>
                         
                     
@@ -203,7 +203,7 @@
                 <blockquote>
 <p>浏览器缓存（Browser Caching）是浏览器端保存数据用于快速读取或避免重复资源请求的优化机制，有效的缓存使用可以避免重复的网络请求和加快页面速度,从而提高用户体验, 目前主要的缓存机制有：http缓存，websql，cookielocalstorage, session,cacheStorage, flash缓存等, 下面将主要对http缓存机制进行详细分析.<br><a id="more"></a></p>
 </blockquote>
-<h2 id="Expires与Cache-Control原理"><a href="#Expires与Cache-Control原理" class="headerlink" title="Expires与Cache-Control原理"></a>Expires与Cache-Control原理</h2><p>http首部Expires和Cache-Control字段是服务端用来约定和客户端的有效时间,格式如下：<br><figure class="highlight avrasm"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="symbol">Expire:</span>Thu, <span class="number">31</span> <span class="keyword">Dec</span> <span class="number">2037</span> <span class="number">23</span>:<span class="number">55</span>:<span class="number">55</span> GMT</div><div class="line">Cache-Control: max-age = <span class="number">315360000</span></div></pre></td></tr></table></figure></p>
+<h2 id="Expires与Cache-Control原理"><a href="#Expires与Cache-Control原理" class="headerlink" title="Expires与Cache-Control原理"></a>Expires与Cache-Control原理</h2><p>http首部Expires和Cache-Control字段是服务端用来约定和客户端的有效时间,格式如下：<br><figure class="highlight avrasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">Expire:</span>Thu, <span class="number">31</span> <span class="keyword">Dec</span> <span class="number">2037</span> <span class="number">23</span>:<span class="number">55</span>:<span class="number">55</span> GMT</span><br><span class="line">Cache-Control: max-age = <span class="number">315360000</span></span><br></pre></td></tr></table></figure></p>
 <ol>
 <li><p>浏览器第一次跟服务器请求一个资源，服务器在返回这个资源的同时，在response的header会加上Expires/cach-control的header；</p>
 </li>
@@ -225,7 +225,7 @@
 <li>Last-Modified,If-Modified-since: 在约定有效期的基础上，增加文件是否修改的字段进行再次验证</li>
 <li>ETag, If-None-Match: 在约定有效期的基础上，增加文件版本号的验证</li>
 </ul>
-<h3 id="Last-Modified-If-Modified-since原理"><a href="#Last-Modified-If-Modified-since原理" class="headerlink" title="Last-Modified,If-Modified-since原理"></a>Last-Modified,If-Modified-since原理</h3> <figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="selector-tag">Last-Modified</span>: <span class="selector-tag">Tue</span>, 12 <span class="selector-tag">Jan</span> 2016 03<span class="selector-pseudo">:08</span><span class="selector-pseudo">:53</span> <span class="selector-tag">GMT</span> </div><div class="line"><span class="selector-tag">If-Modified-Since</span>: <span class="selector-tag">Tue</span>, 12 <span class="selector-tag">Jan</span> 2016 03<span class="selector-pseudo">:08</span><span class="selector-pseudo">:53</span> <span class="selector-tag">GMT</span></div></pre></td></tr></table></figure>
+<h3 id="Last-Modified-If-Modified-since原理"><a href="#Last-Modified-If-Modified-since原理" class="headerlink" title="Last-Modified,If-Modified-since原理"></a>Last-Modified,If-Modified-since原理</h3> <figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">Last-Modified</span>: <span class="selector-tag">Tue</span>, 12 <span class="selector-tag">Jan</span> 2016 03<span class="selector-pseudo">:08</span><span class="selector-pseudo">:53</span> <span class="selector-tag">GMT</span> </span><br><span class="line"><span class="selector-tag">If-Modified-Since</span>: <span class="selector-tag">Tue</span>, 12 <span class="selector-tag">Jan</span> 2016 03<span class="selector-pseudo">:08</span><span class="selector-pseudo">:53</span> <span class="selector-tag">GMT</span></span><br></pre></td></tr></table></figure>
 <ul>
 <li><p>浏览器第一次向服务器请求一个资源，服务器在返回这个资源的同时，在respone的header加上Last-Modified字段，表示该资源在服务器上的最后修改时间；</p>
 </li>
@@ -241,7 +241,7 @@
 <li>如果某些文件会被定期生成，但有时内容并没有任何变化（仅仅改变了时间），但Last-Modified却改变了，导致文件没法使用缓存</li>
 <li>有可能存在服务器没有准确获取文件修改时间，或者与代理服务器时间不一致等情形</li>
 </ul>
-<h3 id="ETag-If-None-Match原理"><a href="#ETag-If-None-Match原理" class="headerlink" title="ETag, If-None-Match原理"></a>ETag, If-None-Match原理</h3><p>ETag解决了Last-Modifiend的缺陷，ETag不仅仅跟最后修改时间决定, 它是根据当前请求的资源生成的一个唯一标识符（默认是由文件的索引节（INode），大小（Size）和最后修改时间（MTime）进行Hash后得到的)<br><figure class="highlight avrasm"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="symbol">ETag:</span> <span class="string">"17fd8-5291a5f96fd20"</span></div></pre></td></tr></table></figure></p>
+<h3 id="ETag-If-None-Match原理"><a href="#ETag-If-None-Match原理" class="headerlink" title="ETag, If-None-Match原理"></a>ETag, If-None-Match原理</h3><p>ETag解决了Last-Modifiend的缺陷，ETag不仅仅跟最后修改时间决定, 它是根据当前请求的资源生成的一个唯一标识符（默认是由文件的索引节（INode），大小（Size）和最后修改时间（MTime）进行Hash后得到的)<br><figure class="highlight avrasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">ETag:</span> <span class="string">"17fd8-5291a5f96fd20"</span></span><br></pre></td></tr></table></figure></p>
 <ul>
 <li><p>浏览器第一次向服务器请求一个资源，服务器在返回这个资源的同时，在respone的header加上ETag字段；</p>
 </li>
@@ -484,7 +484,7 @@
 
                 </ul>
                 <p class="copyright text-muted">
-                    Copyright &copy; Juanha&#39;s Blog 2017 
+                    Copyright &copy; Juanha&#39;s Blog 2018 
                     <br>
                 </p>
             </div>
