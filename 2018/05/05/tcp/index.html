@@ -13,7 +13,7 @@
 
     <title>
         
-          TCP必备知识点梳理 - juanha的博客 | Juanha&#39;s Blog
+          TCP流量控制和拥塞控制机制 - juanha的博客 | Juanha&#39;s Blog
         
     </title>
 
@@ -174,10 +174,10 @@
                 <div class="post-heading">
                     <div class="tags">
                         
-                          <a class="tag" href="/tags/#tcp 网络 传输层" title="tcp 网络 传输层">tcp 网络 传输层</a>
+                          <a class="tag" href="/tags/#tcp 传输层" title="tcp 传输层">tcp 传输层</a>
                         
                     </div>
-                    <h1>TCP必备知识点梳理</h1>
+                    <h1>TCP流量控制和拥塞控制机制</h1>
                     <h2 class="subheading"></h2>
                     <span class="meta">
                         Posted by Juan on
@@ -200,8 +200,8 @@
                 col-md-10 col-md-offset-1
                 post-container">
 
-                <h2 id="TCP必备知识点梳理"><a href="#TCP必备知识点梳理" class="headerlink" title="TCP必备知识点梳理"></a>TCP必备知识点梳理</h2><blockquote>
-<p>TCP是一种可靠的数据传输协议，主要解决传输的可靠、有序、无丢失和不重复的问题。</p>
+                <blockquote>
+<p>TCP是一种可靠的数据传输协议，主要解决传输的可靠、有序、无丢失和不重复的问题。<br><a id="more"></a></p>
 </blockquote>
 <h3 id="TCP具有以下特点："><a href="#TCP具有以下特点：" class="headerlink" title="TCP具有以下特点："></a>TCP具有以下特点：</h3><ul>
 <li>TCP是面向连接的传输层协议</li>
@@ -220,9 +220,7 @@
 <li>窗口字段：支出现在允许对方发送的数据量。如确认号是701，窗口字段是1000，表明从701号算起，发送此报文段的一方还有接收1000字节数据（字节序号是701-1700）的接收缓存空间</li>
 </ul>
 <h3 id="TCP连接管理"><a href="#TCP连接管理" class="headerlink" title="TCP连接管理"></a>TCP连接管理</h3><p>TCP是面向连接的协议，每一个TCP连接都会经过三个阶段：连接建立、数据传送和连接释放。TCP连接的两个端口叫做套接字或查看，连接的建立采用客户/服务器方式，主动发送连接建立的应用进程叫做客户机（client），而被动等待连接建立的应用程序叫做服务器（server）。</p>
-<ol>
-<li>TCP连接三次握手<br><img src="tcp-connect.jpg" alt=""></li>
-</ol>
+<h4 id="TCP连接三次握手"><a href="#TCP连接三次握手" class="headerlink" title="TCP连接三次握手"></a>TCP连接三次握手</h4><p><img src="tcp-connect.jpg" alt=""></p>
 <ul>
 <li>客户机首先向服务器的TCP发送SYN=1，表示一个连接请求报文段，随机选择一个起始序号seq=x</li>
 <li>服务器的TCP收到连接请求报文段，如果同意建立连接，就像客户机发回确认ACK=1,并为该TCP连接分配TCP缓存和变量，并随机产生起始序号seq=y</li>
@@ -231,9 +229,7 @@
 <blockquote>
 <p>注意：服务端资源是在完成第二次握手分配的，而客户端资源是在完成第三次握手分配的，使得服务器易于收到SYN洪泛攻击</p>
 </blockquote>
-<ol start="2">
-<li>TCP连接的释放<br><img src="tcp-shut.jpg" alt=""></li>
-</ol>
+<h4 id="TCP连接的释放"><a href="#TCP连接的释放" class="headerlink" title="TCP连接的释放"></a>TCP连接的释放</h4><p><img src="tcp-shut.jpg" alt=""></p>
 <ul>
 <li>客户机打算关闭连接，向TCP发送FIN=1标志位的连接释放报文段，并停止再发送数据,seq=u等于前面已传送过的数据的最后一个字节的序号加1</li>
 <li>服务器疏导释放报文段，发出确认号ack=u+1。此时，从客户机到服务器这个方向的连接就释放了，TCP连接处于半关闭状态。但服务器若发送数据，客户机仍要接收，即从服务器到客户机这个方向的连接并未关闭</li>
@@ -315,7 +311,7 @@
                     <h5><a href="/tags/">FEATURED TAGS</a></h5>
                     <div class="tags">
                        
-                          <a class="tag" href="/tags/#tcp 网络 传输层" title="tcp 网络 传输层">tcp 网络 传输层</a>
+                          <a class="tag" href="/tags/#tcp 传输层" title="tcp 传输层">tcp 传输层</a>
                         
                     </div>
                 </section>
